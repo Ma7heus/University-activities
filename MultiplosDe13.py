@@ -1,10 +1,11 @@
-x = int(input("Digite o valor de x: "))
-y = int(input("Digite o valor de y: "))
-soma = 0
-sucessor = 0
 
-for i in range(x,y):
-    if i%13 != 0:
-        soma = soma + i
+soma = 0
+sucessor = 1
+
+for i in range(0,4):
+    sucessor = sucessor + i
+    soma = soma + sucessor
+    print(i)
+
 
 print(soma)            
