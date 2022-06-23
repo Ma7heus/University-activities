@@ -1,14 +1,19 @@
 x = int(input())
 y = int(input())
 
+numberList = []
 
-soma = 0
-sucessor = 0
+if x<y:
+    for i in range(x, y+1):
+        if i % 13 != 0:
+            numberList.append(i)
+else:
+    for i in range(y, x+1):
+        if i % 13 != 0:
+            numberList.append(i)
 
-for i in range(x, y+1):
-    sucessor = sucessor = i
-    if sucessor % 13 != 0:
-        soma = soma + sucessor
-        
 
-print(soma)
+print(sum(numberList))
+    
+
+
