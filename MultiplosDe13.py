@@ -1,11 +1,15 @@
+x = int(input())
+y = int(input())
+
 
 soma = 0
-sucessor = 1
+sucessor = 0
 
-for i in range(0,4):
-    sucessor = sucessor + i
+for i in range(x,y+1):
+    sucessor = sucessor = i 
     soma = soma + sucessor
-    print(i)
+    print("esse e i: ",i)
+    print(f"essa e a soma: {soma}")
 
 
-print(soma)            
+
