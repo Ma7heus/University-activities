@@ -11,6 +11,16 @@ for i in range(0,n):
     b = a
     a = num
     num = a + b   
+
+def retornaPosicao(p):
+    for i in range(0,p):
+        x = i
+    
+    print(x)
     
 
+
 print(" ".join(list))
+retornaPosicao(5)
+
+#com erro, corrigir
