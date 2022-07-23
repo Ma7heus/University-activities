@@ -1,16 +1,23 @@
-# cara Coroa de uma forma mais simples
-while True:
-    M =0
-    J =0
-    LISTA = 0
-    i = int(input())
-    if i == 0:
-        break
-    LISTA = list(map(int, input().split()))
+list1 = [40,41,40,39,32,32]  
+list2 = ["E","E","D","D","E","D"]
+contat = 0
 
-    for J in LISTA:
-        if J ==0:
-            M+=1
-    J = i - M
+for i in range(0,5):
+    t = i
+    l = i
+    x = len(list1)
+    for j in list1:
+        if j+1 == list1[t]:
+            print(list1[t])            
+            print(j+1)
+            list1.pop(t)
+            print(list1)
 
-    print(f"Mary won {M} times and John won {J} times")
+
+
+print(contat)
+
+            
+
+    
+ 
