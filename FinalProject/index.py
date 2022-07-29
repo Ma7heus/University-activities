@@ -1,13 +1,12 @@
-import os 
-
-from flask import Flask
-app = Flask(__name__)
+from NerdFlixFunctions import iniciar
 
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
-hello_world()
+resposta = iniciar()
+if resposta == 1:
+    print("CADASTRAR")
+elif resposta ==2:
+        print("LOGIN")
+else:
+    print("Opcao invalida, selecione (1) ou (2).")
 
-    
 
