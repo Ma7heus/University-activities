@@ -1,0 +1,46 @@
+{   // parte dos usuarios
+    "usuarios": {
+      "clientes": {
+        "0001": {
+          "id": "0001",
+          "username": "brenulevi",
+          "password": "123123",
+          "cart": {}
+        }
+      },
+      "employees": {
+        "0001": {
+          "id": "0001",
+          "username": "brenulevi",
+          "password": "123123"
+        }
+      }
+    },
+
+
+    //parte dos produtos
+
+    "products": {
+      "123456": {
+        "name": "Como Treinar O Seu Dragão",
+        "type": 2,
+        "price": "143.2",
+        "can_buy": true
+      },
+      "987654": {
+        "name": "Deus da Guerra",
+        "type": 3 ,
+        "price": "2000.0",
+        "can_buy": false
+      },
+      "234567": {
+        "name": "Minha Mãe é uma peça",
+        "type": 2,
+        "price": "10.0",
+        "can_buy": true
+      }
+    },
+    "buys": {
+      
+    }
+  }

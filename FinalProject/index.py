@@ -1,5 +1,5 @@
-from NerdFlixFunctions import iniciar
-
+from NerdFlixFunctions import *
+import json
 
 resposta = iniciar()
 if resposta == 1:
