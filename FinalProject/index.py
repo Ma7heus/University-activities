@@ -1,5 +1,8 @@
 from NerdFlixFunctions import *
+from Cliente import *
+from Produto import *
 import json
+
 
 resposta = iniciar()
 if resposta == 1:
@@ -7,9 +10,16 @@ if resposta == 1:
     tipoUsuario = verificaTipouUsuario()
 elif resposta ==2:
         print("LOGIN DE USUARIO")
-        tipoUsuario = verificaTipouUsuario()
+        login = login()
+        if login == True:
+            acessoFuncionario()
+
 else:
     print("Opcao invalida, selecione (1) ou (2).")
+
+
+
+
 
 
 

@@ -10,6 +10,9 @@ def iniciar():
     resposta = int(input("Sua resposta: "))
     return resposta
 
+def sair():
+    os.system("cld || clear")
+    iniciar()
 
 def verificaTipouUsuario():
     os.system("cls")
@@ -25,12 +28,52 @@ def buscarDados():
         dados = json.load(dados_json)
     return dados
 
+#fazer validacao de login
+def login():
+    os.system("cls")
+    loginUsuario = input("Digite seu login: ")
+    senhaUsuario = input("Digite sua senha: ")
+
+    dados = buscarDados()
+    userValue = list(dados["usuarios"].values())
+   
+    for i in (0,len(userValue)-1):
+        usuario = userValue[i].get("userName")
+        senha = userValue[i].get("password")
+        if loginUsuario == usuario and senhaUsuario ==senha:
+            print(f"Login efetuado com sucesso, usuario: {loginUsuario}.")
+            return True
+        else:
+            #print("usuario e senha incorretos, tente novamente!")
+            #resposta = int(input("Digite: (1) tentar novamente, (2) sair: "))
+            #if resposta == 1:
+            #   login()
+            #else:
+            #    sair()
+            continue
+
+        
+
+
+
+
+
+
+
+
+#funcao que tras a tela com o que o usuario tem acesso segundo o perfil
+def acessoFuncionario():
+    print("tela do funcionario!")
+
+
+
+
+
 
 
 
 def cadastrarCliente():
     print()
-
 
 def cadastrarFuncionario():
     print()
