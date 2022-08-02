@@ -11,8 +11,8 @@ def iniciar():
     return resposta
 
 def sair():
-    os.system("cld || clear")
-    iniciar()
+    print("Fim")
+    exit()
 
 def verificaTipouUsuario():
     os.system("cls")
@@ -22,48 +22,68 @@ def verificaTipouUsuario():
     tipoUsuario = int(input("Sua resposta: "))
     return tipoUsuario
 
+
 #funcao que consulta os dados no arquivo dados.json
 def buscarDados():
     with open("dados.json", encoding="utf-8") as dados_json:
         dados = json.load(dados_json)
     return dados
 
+def validaUsuario(inputNome,inputSenha,login,senha):
+    if inputNome == login and inputSenha == senha:
+        return True
+    else:
+        return False
+    #falta terminar a validacao para quando errar a senha
+
+
+
 #fazer validacao de login
 def login():
     os.system("cls")
+    dados = buscarDados()
+    userValue = list(dados["usuarios"].values())
+    usuario = ""
+    
     loginUsuario = input("Digite seu login: ")
     senhaUsuario = input("Digite sua senha: ")
 
-    dados = buscarDados()
-    userValue = list(dados["usuarios"].values())
-   
     for i in (0,len(userValue)-1):
         usuario = userValue[i].get("userName")
         senha = userValue[i].get("password")
-        if loginUsuario == usuario and senhaUsuario ==senha:
-            print(f"Login efetuado com sucesso, usuario: {loginUsuario}.")
-            return True
-        else:
-            #print("usuario e senha incorretos, tente novamente!")
-            #resposta = int(input("Digite: (1) tentar novamente, (2) sair: "))
-            #if resposta == 1:
-            #   login()
-            #else:
-            #    sair()
-            continue
-
-        
+        if loginUsuario == usuario:
+            break 
+    userValidation = validaUsuario(loginUsuario,senhaUsuario,usuario,senha)
+    if userValidation == True:
+        return True
+    else:
+        return False
 
 
-
-
-
-
+    #if senhaUsuario == senha:
+    #    print(f"Login efetuado com sucesso, usuario: {loginUsuario}.")
+    #    return True
+    #else:
+        #print("Seu login falhou, tente novamente!")
+        #print("Selecione: (1) login, (2) sair")
+        #respostaLogin = int(input("Sua resposta: "))
+        #if respostaLogin == 1:
+        #login()
+        #else:
+        #    sair()
 
 
 #funcao que tras a tela com o que o usuario tem acesso segundo o perfil
 def acessoFuncionario():
-    print("tela do funcionario!")
+    os.system("cls||clear")    
+    print("TELA DO FUNCIONARIO!\n")
+    print("Cadastrar de Cliente   (1)")
+    print("Consulta de produto    (2)")
+    print("Atualizar produto      (3)")
+    print("Relatorios de produtos (4)")
+    print("Registrar venda        (5)\n")
+    opcaoSelecionada = int(input("Digite a opcao que deseja: "))
+    return opcaoSelecionada
 
 
 
