@@ -20,7 +20,7 @@ def verificaTipouUsuario():
     print("Sou Cliente:      (1)")
     print("Sou Funcionario:  (2)")
     tipoUsuario = int(input("Sua resposta: "))
-    return tipoUsuario
+    return tipoUsuario  
 
 
 #funcao que consulta os dados no arquivo dados.json
@@ -87,21 +87,32 @@ def acessoFuncionario():
 
 
 
-
-
-
-
-
 def cadastrarCliente():
-    print()
+    print( AREA DE CADASTRO DO CLIENTE:)
+    print("Cadastrar novo Cliente  (1)")
+    print("Consulta cliente        (2)")
+    print("Editar dados do cliente (3)")
+    resposta = int(input("Digite a opcao que deseja: "))
+    return resposta
 
 def cadastrarFuncionario():
-    print()
-
+    print( CADASTRO DE USUARIOS:)
+    print("Cadastrar novo usuario   (1)")
+    print("Editar usuario existente (2)")
+    resposta = int(input("Digite a opcao que deseja: "))
+    return resposta
 
 
 def cadastrarProdutos():
-    print()
+    print("CADASTRO DE PRODUTOS:")
+    codigo = int(input("Digite o codigo do produto: "))
+    nome = str(input("Digite o nome do produto: "))
+    preco = float(input("Digite o preco do produto: R$ "))
+    tipo = int(input("Digite o TIPO do produto:\n(1) para série, (2) filme, (3) documentário: "))
+    disponivel = int(input("Digite se esta diponivel para venda:\n(1) sim, (2) nao: "))
+    
+
+
 def consultarProdutos():
     print()
 def atualizarProdutos():

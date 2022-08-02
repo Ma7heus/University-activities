@@ -13,7 +13,6 @@ elif resposta ==2:
     print("LOGIN DE USUARIO")
     login = login()
 
-
 if login == True:
     rotina = acessoFuncionario()
     if rotina ==1:
@@ -28,7 +27,8 @@ if login == True:
         registrarCompras()
     else:
         print("Opcao nao existente!")      
-
+elif login == False:
+    sair()
 
 
 

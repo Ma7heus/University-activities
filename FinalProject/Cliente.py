@@ -6,13 +6,13 @@ class Cliente:
     nome = None
     sobrenome = None
 
-cliente1 = Cliente()
+    
+    cliente1 = Cliente()
+    cliente1.ident = 1
+    cliente1.nome = "Matheus"
+    cliente1.sobrenome = "Biasi"
 
-cliente1.ident = 1
-cliente1.nome = "Matheus"
-cliente1.sobrenome = "Biasi"
-
-print(cliente1.ident)
+    print(cliente1.ident)
 
 
 
