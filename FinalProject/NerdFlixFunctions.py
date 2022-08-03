@@ -38,6 +38,7 @@ def validaUsuario(inputNome,inputSenha,login,senha):
 
 
 
+
 #fazer validacao de login
 def login():
     os.system("cls")
@@ -87,8 +88,9 @@ def acessoFuncionario():
 
 
 
-def cadastrarCliente():
-    print( AREA DE CADASTRO DO CLIENTE:)
+def cadastrarCliente():    
+    os.system("cls||clear")
+    print("AREA DE CADASTRO DO CLIENTE:")
     print("Cadastrar novo Cliente  (1)")
     print("Consulta cliente        (2)")
     print("Editar dados do cliente (3)")
@@ -96,7 +98,8 @@ def cadastrarCliente():
     return resposta
 
 def cadastrarFuncionario():
-    print( CADASTRO DE USUARIOS:)
+    os.system("cls||clear")
+    print("CADASTRO DE USUARIOS:")
     print("Cadastrar novo usuario   (1)")
     print("Editar usuario existente (2)")
     resposta = int(input("Digite a opcao que deseja: "))
@@ -104,6 +107,7 @@ def cadastrarFuncionario():
 
 
 def cadastrarProdutos():
+    os.system("cls||clear")
     print("CADASTRO DE PRODUTOS:")
     codigo = int(input("Digite o codigo do produto: "))
     nome = str(input("Digite o nome do produto: "))

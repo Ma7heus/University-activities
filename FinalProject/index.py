@@ -1,5 +1,4 @@
 from NerdFlixFunctions import *
-from Cliente import *
 from Produto import *
 import json
 
@@ -29,6 +28,7 @@ if login == True:
         print("Opcao nao existente!")      
 elif login == False:
     sair()
+
 
 
 
