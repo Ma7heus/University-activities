@@ -3,6 +3,7 @@ import json
 import os
 os.system("cls||clear")
 
+
 with open("dados.json", encoding="utf-8") as dados_json:
         dados = json.load(dados_json)
         userValue = list(dados["products"].values())
@@ -21,3 +22,5 @@ print(produto["price"])
 produto["name"] = "MUDOU O NOME"
 print(produto["name"])
 print(userValue[1])
+
+
