@@ -1,5 +1,4 @@
 from NerdFlixFunctions import *
-from Cliente import *
 from Produto import *
 import json
 

@@ -88,7 +88,7 @@ def acessoFuncionario():
 
 
 def cadastrarCliente():
-    print( AREA DE CADASTRO DO CLIENTE:)
+    print("AREA DE CADASTRO DO CLIENTE:")
     print("Cadastrar novo Cliente  (1)")
     print("Consulta cliente        (2)")
     print("Editar dados do cliente (3)")
@@ -96,7 +96,7 @@ def cadastrarCliente():
     return resposta
 
 def cadastrarFuncionario():
-    print( CADASTRO DE USUARIOS:)
+    print("CADASTRO DE USUARIOS:")
     print("Cadastrar novo usuario   (1)")
     print("Editar usuario existente (2)")
     resposta = int(input("Digite a opcao que deseja: "))
