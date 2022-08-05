@@ -24,10 +24,39 @@ def verificaTipouUsuario():
 
 
 #funcao que consulta os dados no arquivo dados.json
-def buscarDados():
-    with open("dados.json", encoding="utf-8") as dados_json:
+def buscarDados(tipo):
+    arquivo = ""
+    if tipo == "users":
+        arquivo = "users.json"
+    elif tipo == "products":
+        arquivo = "products.json"
+    elif tipo == "clients":
+        arquivo = "clients.json"
+    else:
+        print("nome de arquivo nao existe")
+
+    with open(arquivo,"r", encoding="utf-8") as dados_json:
         dados = json.load(dados_json)
+        dados_json.close()
     return dados
+
+def SalvarDados(tipo,dados):
+    arquivo = ""
+    if tipo == "users":
+        arquivo = "users.json"
+    elif tipo == "products":
+        arquivo = "products.json"
+    elif tipo == "clients":
+        arquivo = "clients.json"
+    else:
+        print("nome de arquivo nao existe")
+
+    with open(arquivo, "w", encoding="utf-8") as dados_json:
+        json.dump(dados,dados_json,indent=4)
+    
+    return "Informacoes salvas!"
+
+
 
 def validaUsuario(inputNome,inputSenha,login,senha):
     if inputNome == login and inputSenha == senha:
@@ -35,7 +64,6 @@ def validaUsuario(inputNome,inputSenha,login,senha):
     else:
         return False
     #falta terminar a validacao para quando errar a senha
-
 
 
 
@@ -61,21 +89,8 @@ def login():
         return False
 
 
-    #if senhaUsuario == senha:
-    #    print(f"Login efetuado com sucesso, usuario: {loginUsuario}.")
-    #    return True
-    #else:
-        #print("Seu login falhou, tente novamente!")
-        #print("Selecione: (1) login, (2) sair")
-        #respostaLogin = int(input("Sua resposta: "))
-        #if respostaLogin == 1:
-        #login()
-        #else:
-        #    sair()
-
-
 #funcao que tras a tela com o que o usuario tem acesso segundo o perfil
-def acessoFuncionario():
+def acessoFuncionario(): #FINALIZADA
     os.system("cls||clear")    
     print("TELA DO FUNCIONARIO!\n")
     print("Cadastrar de Cliente   (1)")
@@ -83,12 +98,10 @@ def acessoFuncionario():
     print("Atualizar produto      (3)")
     print("Relatorios de produtos (4)")
     print("Registrar venda        (5)\n")
-    opcaoSelecionada = int(input("Digite a opcao que deseja: "))
-    return opcaoSelecionada
+    resposta = int(input("Digite a opcao que deseja: "))
+    return resposta
 
-
-
-def cadastrarCliente():    
+def cadastroDoCliente(): #FINALIZADA
     os.system("cls||clear")
     print("AREA DE CADASTRO DO CLIENTE:")
     print("Cadastrar novo Cliente  (1)")

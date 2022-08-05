@@ -1,0 +1,12 @@
+{
+    "0001": {
+        "id": " 0001 ",
+        "nome": " mateus ",
+        "carrinho": {}
+    },
+    "0002": {
+        "id": "0001",
+        "nome": "matheus 3",
+        "carrinho": {}
+    }
+}
