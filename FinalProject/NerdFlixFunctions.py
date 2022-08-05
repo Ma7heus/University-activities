@@ -101,8 +101,14 @@ def acessoFuncionario(): #FINALIZADA
     resposta = int(input("Digite a opcao que deseja: "))
     return resposta
 
+<<<<<<< HEAD
 def cadastroDoCliente(): #FINALIZADA
     os.system("cls||clear")
+=======
+
+
+def cadastrarCliente():
+>>>>>>> d028b31fabc65c352aa6f9d192e52aed252413e6
     print("AREA DE CADASTRO DO CLIENTE:")
     print("Cadastrar novo Cliente  (1)")
     print("Consulta cliente        (2)")
@@ -111,7 +117,10 @@ def cadastroDoCliente(): #FINALIZADA
     return resposta
 
 def cadastrarFuncionario():
+<<<<<<< HEAD
     os.system("cls||clear")
+=======
+>>>>>>> d028b31fabc65c352aa6f9d192e52aed252413e6
     print("CADASTRO DE USUARIOS:")
     print("Cadastrar novo usuario   (1)")
     print("Editar usuario existente (2)")
