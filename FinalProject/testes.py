@@ -28,12 +28,21 @@ os.system("cls||clear")
  #       json.dump(dados,users_json, indent=4)
 
 
-dadosClientes = buscarDados("clients")
-print(dadosClientes)
+#dadosClientes = buscarDados("clients")
+#print(dadosClientes)
 
-dadosClientes.update({"0002":{"id": "0001", "nome": "matheus 3", "carrinho":{}}})
-print(dadosClientes)
+#lista = list(dadosClientes.items())
+#print(lista)
 
-SalvarDados("clients",dadosClientes)
+
+
+dados = buscarDados("users")
+listUsers1 = list(dados.values())
+listUsers2 = list(dados.keys())
+listUsers3 = list(dados.items())
+print(len(listUsers1),len(listUsers2),len(listUsers3))
+
+resposta = cadastrarUsuario()
+print(resposta)
 
 

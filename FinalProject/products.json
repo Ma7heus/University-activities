@@ -1,20 +1,20 @@
 {    
     "123456" : {
-        "name" : " Como Treinar O Seu Dragão " ,
+        "name" : "Como Treinar O Seu Dragão" ,
         "tipo" : 2 ,
-        "preço" : " 143,2 " ,
+        "preço" : "143,2" ,
         "can_buy" : true
     },
         "987654" : {
-        "nome" : " Deus da Guerra " ,
+        "nome" : "Deus da Guerra" ,
         "tipo" : 3 ,
-        "preço" : " 2.000,0 " ,
+        "preço" : "2.000,0" ,
         "can_buy" : false
     },
         "234567" : {
-        "name" : " Minha Mãe é uma peça " ,
+        "name" : "Minha Mãe é uma peça" ,
         "tipo" : 2 ,
-        "preço" : " 10,0 " ,
+        "preço" : "10,0" ,
         "can_buy" : true
     }
 }

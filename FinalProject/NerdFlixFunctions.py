@@ -10,21 +10,12 @@ def iniciar():
     resposta = int(input("Sua resposta: "))
     return resposta
 
-def sair():
+def sair(): #FINALIZADA
     print("Fim")
     exit()
 
-def verificaTipouUsuario():
-    os.system("cls")
-    print("DIGITE A SEGUIR O SEU TIPO DE USUARIO:")
-    print("Sou Cliente:      (1)")
-    print("Sou Funcionario:  (2)")
-    tipoUsuario = int(input("Sua resposta: "))
-    return tipoUsuario  
-
-
 #funcao que consulta os dados no arquivo dados.json
-def buscarDados(tipo):
+def buscarDados(tipo): #FINALIZADA
     arquivo = ""
     if tipo == "users":
         arquivo = "users.json"
@@ -40,7 +31,8 @@ def buscarDados(tipo):
         dados_json.close()
     return dados
 
-def SalvarDados(tipo,dados):
+
+def SalvarDados(tipo,dados): #FINALIZADA
     arquivo = ""
     if tipo == "users":
         arquivo = "users.json"
@@ -52,41 +44,33 @@ def SalvarDados(tipo,dados):
         print("nome de arquivo nao existe")
 
     with open(arquivo, "w", encoding="utf-8") as dados_json:
-        json.dump(dados,dados_json,indent=4)
-    
+        json.dump(dados,dados_json,indent=4)    
     return "Informacoes salvas!"
 
 
-
-def validaUsuario(inputNome,inputSenha,login,senha):
-    if inputNome == login and inputSenha == senha:
-        return True
-    else:
-        return False
-    #falta terminar a validacao para quando errar a senha
-
-
-
 #fazer validacao de login
-def login():
+def login(): # NAO FINALIZADA
     os.system("cls")
-    dados = buscarDados()
-    userValue = list(dados["usuarios"].values())
+    dados = buscarDados("users")
+    listUsers = list(dados.values())
     usuario = ""
     
     loginUsuario = input("Digite seu login: ")
     senhaUsuario = input("Digite sua senha: ")
 
-    for i in (0,len(userValue)-1):
-        usuario = userValue[i].get("userName")
-        senha = userValue[i].get("password")
+    for i in (0,len(listUsers)-1):
+        usuario = listUsers[i].get("userName")
+        senha = listUsers[i].get("password")
+        print(usuario,senha)
         if loginUsuario == usuario:
-            break 
-    userValidation = validaUsuario(loginUsuario,senhaUsuario,usuario,senha)
-    if userValidation == True:
+            break
+
+    if senhaUsuario == senha:
         return True
     else:
         return False
+
+    # fazer tratamento para quando a senha da errado
 
 
 #funcao que tras a tela com o que o usuario tem acesso segundo o perfil
@@ -101,29 +85,11 @@ def acessoFuncionario(): #FINALIZADA
     resposta = int(input("Digite a opcao que deseja: "))
     return resposta
 
-<<<<<<< HEAD
-def cadastroDoCliente(): #FINALIZADA
-    os.system("cls||clear")
-=======
-
-
-def cadastrarCliente():
->>>>>>> d028b31fabc65c352aa6f9d192e52aed252413e6
+def cadastrarCliente(): #FINALIZADA
     print("AREA DE CADASTRO DO CLIENTE:")
     print("Cadastrar novo Cliente  (1)")
     print("Consulta cliente        (2)")
     print("Editar dados do cliente (3)")
-    resposta = int(input("Digite a opcao que deseja: "))
-    return resposta
-
-def cadastrarFuncionario():
-<<<<<<< HEAD
-    os.system("cls||clear")
-=======
->>>>>>> d028b31fabc65c352aa6f9d192e52aed252413e6
-    print("CADASTRO DE USUARIOS:")
-    print("Cadastrar novo usuario   (1)")
-    print("Editar usuario existente (2)")
     resposta = int(input("Digite a opcao que deseja: "))
     return resposta
 
@@ -137,6 +103,56 @@ def cadastrarProdutos():
     tipo = int(input("Digite o TIPO do produto:\n(1) para série, (2) filme, (3) documentário: "))
     disponivel = int(input("Digite se esta diponivel para venda:\n(1) sim, (2) nao: "))
     
+
+def cadastroNovoCliente(): #FINALIZADA
+    os.system("cls||clear")
+
+def validacaoUsuarioNovo(userName,listUserName):
+    for i in listUserName:
+        if i["userName"] == userName:
+            return True
+        else:
+            return False
+
+
+def cadastrarUsuario():
+    os.system("cls||clear")
+    print("CADASTRO DE USUARIO")
+    nome = str(input("Digite o nome do seu Login: "))
+    senha = str(input("Digite a sua senha de login: "))
+    listID = []
+
+    dados = buscarDados("users")
+    listUsers = list(dados.values())
+    listUserKeys = list(dados.keys())
+
+    userAlreadyExist =  validacaoUsuarioNovo(nome,listUsers)
+    if userAlreadyExist == True:
+        print("Esse login ja existe, faca login ou selecione um login diferente.")
+        print("Digite (1) Login, (2) Cadastrar usuario")
+        resposta = int(input("Sua resposta: "))
+        if resposta == 1:
+            loginUsuario()
+        elif resposta == 2:
+            return cadastrarUsuario()
+        else:
+            print("Opcao selecionada nao existente")
+            sair()
+    else:
+        #transforma a key em numero inteiro e cria novo ID
+        for i in listUserKeys:
+            listID.append(int(i))
+        for i in listID:
+            ID = i
+        ID = ID + 1
+        ID = str(ID)
+        
+        dados.update({ID:{"userName": nome, "password": senha}})
+        SalvarDados("users",dados)
+        
+    return True
+  
+
 
 
 def consultarProdutos():

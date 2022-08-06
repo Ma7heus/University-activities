@@ -1,5 +1,4 @@
 from NerdFlixFunctions import *
-from Produto import *
 import json
 
 rotina = 0
@@ -11,7 +10,6 @@ if resposta == 1:
 elif resposta ==2:
     print("LOGIN DE USUARIO")
     login = login()
-
 if login == True:
     rotina = acessoFuncionario()
     if rotina ==1:
