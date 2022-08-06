@@ -36,13 +36,12 @@ os.system("cls||clear")
 
 
 
-dados = buscarDados("users")
-listUsers1 = list(dados.values())
-listUsers2 = list(dados.keys())
-listUsers3 = list(dados.items())
-print(len(listUsers1),len(listUsers2),len(listUsers3))
+#dados = buscarDados("users")
+#listUsers1 = list(dados.values())
+#listUsers2 = list(dados.keys())
+#listUsers3 = list(dados.items())
+#print(len(listUsers1),len(listUsers2),len(listUsers3))
 
-resposta = cadastrarUsuario()
-print(resposta)
+nerdflix = iniciar()
 
 

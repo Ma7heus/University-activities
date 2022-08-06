@@ -1,12 +1,20 @@
 {
-    "0001": {
-        "id": "0001",
+    "1": {
+        "id": "1",
         "nome": "mateus",
+        "sobrenome": "Biasi",
         "carrinho": {}
     },
-    "0002": {
-        "id": "0001",
+    "2": {
+        "id": "2",
         "nome": "matheus 3",
+        "sobrenome": "Biasi 3",
+        "carrinho": {}
+    },
+    "3": {
+        "id": "3",
+        "userName": "Pedro",
+        "password": "Parabola",
         "carrinho": {}
     }
 }
