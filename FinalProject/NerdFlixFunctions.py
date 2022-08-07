@@ -1,5 +1,6 @@
 import os
 import json
+import getpass
 
 def iniciar():
     os.system("cls")
@@ -59,6 +60,19 @@ def SalvarDados(tipo,dados): #FINALIZADA
         json.dump(dados,dados_json,indent=4)    
     return "Informacoes salvas!"
 
+def recebeInt(msg):
+    ok = False
+    valor = 0
+    while True:
+        n = str(input(msg))
+        if n.isnumeric():
+            valor = int(n)
+            ok = True
+        else:
+            print("ERRO! Valor precisa ser do tipo inteiro.")
+        if ok:
+            break
+    return valor
 
 #fazer validacao de login
 def login(): # NAO FINALIZADA
@@ -68,7 +82,7 @@ def login(): # NAO FINALIZADA
     usuario = ""
     
     loginUsuario = input("Digite seu login: ")
-    senhaUsuario = input("Digite sua senha: ")
+    senhaUsuario = getpass.getpass("Digite sua senha: ")
 
     for i in (0,len(listUsers)-1):
         usuario = listUsers[i].get("userName")
@@ -142,7 +156,7 @@ def cadastrarCliente(): #FINALIZADA
 def cadastrarProdutos():
     os.system("cls||clear")
     print("CADASTRO DE PRODUTOS:")
-    codigo = int(input("Digite o codigo do produto: "))
+    codigo = recebeInt("Digite o codigo do produto: ")
     nome = str(input("Digite o nome do produto: "))
     preco = float(input("Digite o preco do produto: R$ "))
     tipo = int(input("Digite o TIPO do produto:\n(1) para série, (2) filme, (3) documentário: "))
@@ -184,7 +198,7 @@ def cadastrarUsuario():
     os.system("cls||clear")
     print("CADASTRO DE USUARIO")
     nome = str(input("Digite o nome do seu Login: "))
-    senha = str(input("Digite a sua senha de login: "))
+    senha = getpass.getpass("Digite a sua senha de login: ")
     listID = []
 
     dados = buscarDados("users")
@@ -216,8 +230,8 @@ def cadastrarUsuario():
         SalvarDados("users",dados)
 
     print("\n")    
-    print("Fazer login: (1) ")
-    print("Sair:                 (2)")
+    print("Fazer login: (1)")
+    print("Sair:        (2)")
     resposta2 = input("Selecione a opcao desejada: ")
     if resposta2 == 1:
         login()
