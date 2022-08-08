@@ -156,11 +156,53 @@ def cadastrarCliente(): #FINALIZADA
 def cadastrarProdutos():
     os.system("cls||clear")
     print("CADASTRO DE PRODUTOS:")
+
     codigo = recebeInt("Digite o codigo do produto: ")
     nome = str(input("Digite o nome do produto: "))
     preco = float(input("Digite o preco do produto: R$ "))
     tipo = int(input("Digite o TIPO do produto:\n(1) para série, (2) filme, (3) documentário: "))
     disponivel = int(input("Digite se esta diponivel para venda:\n(1) sim, (2) nao: "))
+    if disponivel == 1:
+        canBuy = True
+    elif disponivel == 2:
+        canBuy = False
+    else:
+        canBuy = False
+    
+    dados = buscarDados("products")
+    listProductsKeys = list(dados.keys())
+
+
+
+    dados.update({codigo : {"name" : nome, "tipo" : tipo, "preço" : preco, "can_buy" : canBuy}})
+
+    SalvarDados("products",dados)
+
+
+
+
+
+
+
+
+
+def verificaCodigo():
+    dados = buscarDados("products")
+    listProductsCodigos = list(dados.keys())
+
+    codigo = recebeInt("Digite o codigo do Produto!")
+    for i in listProductsCodigos:
+        if codigo == i:
+            return recebeInt("Codigo já existe digite outro!")            
+        else: 
+
+
+    
+
+
+
+
+
     
 
 def cadastroNovoCliente(): #FINALIZADA
