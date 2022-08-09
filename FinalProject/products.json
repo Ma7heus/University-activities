@@ -1,0 +1,50 @@
+{
+    "123456": {
+        "nome": "Como Treinar O Seu Dragão",
+        "tipo": 2,
+        "preco": 143.21,
+        "canBuy": true
+    },
+    "987654": {
+        "nome": "Deus da Guerra",
+        "tipo": 3,
+        "preco": 40.21,
+        "canBuy": false
+    },
+    "234567": {
+        "nome": "Minha Mãe é uma peça",
+        "tipo": 2,
+        "preco": 10.0,
+        "canBuy": true
+    },
+    "123125": {
+        "nome": "Spider Man: No way Home",
+        "tipo": 2,
+        "preco": 58.24,
+        "canBuy": true
+    },
+    "12147451": {
+        "nome": "The Game Changers",
+        "tipo": 3,
+        "preco": 38.41,
+        "canBuy": true
+    },
+    "135284": {
+        "nome": "Esposa de Mentirinha",
+        "tipo": 2,
+        "preco": 65.35,
+        "canBuy": false
+    },
+    "3265154": {
+        "nome": "Arrow",
+        "tipo": 1,
+        "preco": 5.0,
+        "canBuy": true
+    },
+    "456123": {
+        "nome": "TWD",
+        "tipo": 1,
+        "preco": 200.0,
+        "canBuy": true
+    }
+}

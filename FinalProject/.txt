@@ -1,0 +1,13 @@
+  id = "0001"
+
+      user = {
+        "id": id,
+        "username": username,
+        "password": password,
+        "cart": {}
+      }
+
+      db["users"][self.user_type.lower()][id] = user
+      to_change_file = open("./db/db.json", "w", encoding='utf8')
+      json.dump(db, to_change_file, indent=2, ensure_ascii=False)
+      to_change_file.close()

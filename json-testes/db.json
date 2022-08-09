@@ -1,0 +1,13 @@
+{   
+    "usuarios" : {
+      "0001" :{
+        "userName" : " Matheus " ,
+        "senha" : " 1234 "
+      },
+      "0002" :{
+        "userName" : " Pedro " ,
+        "senha" : " 4321 "
+      }
+      
+  }
+}
