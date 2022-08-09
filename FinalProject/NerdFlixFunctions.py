@@ -104,24 +104,27 @@ def acessoFuncionario(): #NAO FINALIZADA
     os.system("cls||clear")    
     print("TELA DO FUNCIONARIO!\n")
     print("Cadastro de Cliente    (1)")
-    print("Consulta de produto    (2)")
-    print("Atualizar produto      (3)")
-    print("Relatorios de produtos (4)")
-    print("Registrar venda        (5)")
-    print("Sair                   (6)\n")
+    print("Cadastro de produto    (2)")
+    print("Consulta de produto    (3)")
+    print("Atualizar produto      (4)")
+    print("Relatorios de produtos (5)")
+    print("Registrar venda        (6)")
+    print("Sair                   (7)\n")
     resposta = int(input("Digite a opcao que deseja: "))
 
     if resposta ==1:        
-        cadastrarCliente()
+        cadastrarCliente()      
     elif resposta  ==2:
         cadastrarProdutos()
-    elif resposta ==3:
+    elif resposta  ==3:
+        consultaProdutosPorCodigo() 
+    elif resposta ==4:
         atualizarProdutos()
-    elif resposta  ==4:
+    elif resposta  ==5:
         relatorioPodutos()
-    elif resposta ==5:
+    elif resposta ==6:
         registrarCompras()
-    elif resposta  ==6:
+    elif resposta  ==7:
         sair()
     else:
         print("Opcao nao existente, tente novamente!")
@@ -274,12 +277,12 @@ def cadastrarUsuario():
 
 
 
-def consultaProdutos():
+def consultaProdutosPorCodigo():
+    os.system("cls || clear")
     find = False
     cont = 0
     cont2 = 0
-    value = ""
-    codigo = input("Digite o codigo: ")
+    codigo = input("Digite o codigo que deseja: ")
     codigo = str(codigo)
     dados = buscarDados("products")
     listProductsCodes = list(dados.keys())
@@ -290,14 +293,48 @@ def consultaProdutos():
         if i == codigo:
             find = True
             break
+
     if find:
         for i in listProductsValues:
             cont2 += 1
             if cont2 == cont:
-                value = i.get("nome")
-                return value
+                nome = i.get("nome")
+                tipo = i.get("tipo")
+
+                if tipo == 1:
+                    tipon = ("Seriado")
+                elif tipo ==2:
+                    tipon = ("Filme")
+                elif tipo == 3:
+                    tipon = ("Documentario")
+                else:
+                    tipon = ("desconhecido")
+
+                preco = i.get("preco")
+                canBuy = i.get("canBuy")
+                print("\n")
+                print("Nome:  ",nome)
+                print("Tipo:  ",tipon)
+                print("preco: ",preco)
+                print("Dispon:",canBuy)
+                print("\n")
+
+                print("Nova Consulta (1), sair (2).")
+                resposta = recebeInt("Resposta: ")
+                if resposta == 1:
+                    consultaProdutosPorCodigo()
+                else:
+                    acessoFuncionario()
+                
     else:
-        return "Codigo digitado nao encontado, tente novamente."
+        print("\n")
+        print("Produto nao cadastrado! Tente novamente (1), sair (2).")
+        resposta = recebeInt("Resposta: ")
+        if resposta == 1:
+            consultaProdutosPorCodigo()
+        else:
+            acessoFuncionario()
+
 
 
 
