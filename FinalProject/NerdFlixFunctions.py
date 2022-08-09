@@ -276,13 +276,13 @@ def cadastrarUsuario():
         iniciar()
 
 
-
-def consultaProdutosPorCodigo():
+#Funcao que busca informacoes de produtos pelo Codigo
+def consultaProdutosPorCodigo(): #FINALIZADA
     os.system("cls || clear")
     find = False
     cont = 0
     cont2 = 0
-    codigo = input("Digite o codigo que deseja: ")
+    codigo = recebeInt("Digite o codigo que deseja: ")
     codigo = str(codigo)
     dados = buscarDados("products")
     listProductsCodes = list(dados.keys())
@@ -335,15 +335,82 @@ def consultaProdutosPorCodigo():
         else:
             acessoFuncionario()
 
-
-
-
-
-
-
-
-    print()
+#Funcao para atualizar/editar informacoes de produtos ja existentes
 def atualizarProdutos():
+    os.system("cls || clear")
+    find = False
+    cont = 0
+    cont2 = 0
+    codigo = recebeInt("Digite o codigo do produto que deseja editar: ")
+    codigo = str(codigo)
+    dados = buscarDados("products")
+    listProductsCodes = list(dados.keys())
+    listProductsValues = list(dados.values())
+
+    for i in listProductsCodes:
+        cont += 1
+        if i == codigo:
+            find = True
+            break
+
+    if find:
+        for i in listProductsValues:
+            cont2 += 1
+            if cont2 == cont:
+                nome = i.get("nome")
+                tipo = i.get("tipo")
+
+                if tipo == 1:
+                    tipon = ("Seriado")
+                elif tipo ==2:
+                    tipon = ("Filme")
+                elif tipo == 3:
+                    tipon = ("Documentario")
+                else:
+                    tipon = ("desconhecido")
+
+                preco = i.get("preco")
+                canBuy = i.get("canBuy")
+                print("\n")
+                print("Nome:  ",nome)
+                print("Tipo:  ",tipon)
+                print("preco: ",preco)
+                print("Dispon:",canBuy)
+                print("\n")
+                
+                #PARTE NOVA
+                print("O que deseja editar? ")
+                print("Nome           (1)")
+                print("Tipo           (2)")
+                print("Preco          (3)")
+                print("Disp. p/ venda (4)\n")
+                print("Nova Consulta (5), sair (6).")
+                resposta = recebeInt("Resposta: ")
+                
+                resposta = recebeInt("Resposta: ")
+                if resposta == 1:
+                    print()
+                elif resposta == 2:
+                    print()
+                elif resposta == 3:
+                    print()
+                elif resposta ==4:
+                    print()
+                elif resposta == 5:
+                    consultaProdutosPorCodigo()
+                else:
+                    acessoFuncionario()
+                
+    else:
+        print("\n")
+        print("Produto nao cadastrado! Tente novamente (1), sair (2).")
+        resposta = recebeInt("Resposta: ")
+        if resposta == 1:
+            consultaProdutosPorCodigo()
+        else:
+            acessoFuncionario()
+
+
     print()
 def relatorioPodutos():
     print()
