@@ -57,7 +57,7 @@ def SalvarDados(tipo,dados): #FINALIZADA
         print("nome de arquivo nao existe")
 
     with open(arquivo, "w", encoding="utf-8") as dados_json:
-        json.dump(dados,dados_json,indent=4)    
+        json.dump(dados,dados_json,indent=4, ensure_ascii=False) 
     return "Informacoes salvas!"
 
 def recebeInt(msg):
@@ -172,7 +172,7 @@ def cadastrarProdutos():
     dados = buscarDados("products")
     listProductsKeys = list(dados.keys())
 
-    dados.update({codigo : {"name" : nome, "tipo" : tipo, "preco" : preco, "can_buy" : canBuy}})
+    dados.update({codigo : {"nome" : nome, "tipo" : tipo, "preco" : preco, "canBuy" : canBuy}})
 
     SalvarDados("products",dados)
 
@@ -181,13 +181,16 @@ def cadastrarProdutos():
 def verificaCodigo():
     dados = buscarDados("products")
     listProductsCodes = list(dados.keys())
-
-    codigo = recebeInt("Digite o codigo do Produto!")
+    
+    codigo = recebeInt("Digite o codigo do Produto: ")
+    codigo = str(codigo)
     for i in listProductsCodes:
         if codigo == i:
             print("Codigo ja existe, digite outro!")
+            codigo = int(codigo)
             return verificaCodigo()            
         else:
+            codigo = int(codigo)
             return codigo
 
 
@@ -271,7 +274,37 @@ def cadastrarUsuario():
 
 
 
-def consultarProdutos():
+def consultaProdutos():
+    find = False
+    cont = 0
+    cont2 = 0
+    value = ""
+    codigo = input("Digite o codigo: ")
+    codigo = str(codigo)
+    dados = buscarDados("products")
+    listProductsCodes = list(dados.keys())
+    listProductsValues = list(dados.values())
+
+    for i in listProductsCodes:
+        cont += 1
+        if i == codigo:
+            find = True
+            break
+    if find:
+        for i in listProductsValues:
+            cont2 += 1
+            if cont2 == cont:
+                value = i.get("nome")
+                return value
+    else:
+        return "Codigo digitado nao encontado, tente novamente."
+
+
+
+
+
+
+
     print()
 def atualizarProdutos():
     print()
