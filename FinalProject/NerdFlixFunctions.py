@@ -282,7 +282,7 @@ def consultaProdutosPorCodigo(): #FINALIZADA
     find = False
     cont = 0
     cont2 = 0
-    codigo = verificaCodigo()
+    codigo = recebeInt("Digite o codigo que deseja editar: ")
     codigo = str(codigo)
     dados = buscarDados("products")
     listProductsCodes = list(dados.keys())
@@ -317,8 +317,6 @@ def consultaProdutosPorCodigo(): #FINALIZADA
                 print("Tipo:  ",tipon)
                 print("preco: ",preco)
                 print("Dispon:",canBuy)
-                print("\n")
-
                 print("Nova Consulta (1), sair (2).")
                 resposta = recebeInt("Resposta: ")
                 if resposta == 1:
@@ -341,7 +339,7 @@ def atualizarProdutos():
     find = False
     cont = 0
     cont2 = 0
-    codigo = verificaCodigo()
+    codigo = recebeInt("Digite o codigo que deseja editar: ")
     codigo = str(codigo)
     dados = buscarDados("products")
     listProductsCodes = list(dados.keys())

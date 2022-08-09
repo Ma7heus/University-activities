@@ -1,8 +1,8 @@
 {
     "123456": {
-        "nome": "Como Treinar O Seu Dragão",
+        "nome": "Como Treinar seu Dragão 2",
         "tipo": 2,
-        "preco": 143.21,
+        "preco": 238.99,
         "canBuy": true
     },
     "987654": {
@@ -14,7 +14,7 @@
     "234567": {
         "nome": "Minha Mãe é uma peça",
         "tipo": 2,
-        "preco": 10.00,
+        "preco": 10.0,
         "canBuy": true
     },
     "123125": {

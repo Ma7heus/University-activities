@@ -2,6 +2,6 @@ from NerdFlixFunctions import *
 import json
 import getpass
 
-nerdflix = iniciar()
-
+#nerdflix = iniciar()
+atualizarProdutos()
 
