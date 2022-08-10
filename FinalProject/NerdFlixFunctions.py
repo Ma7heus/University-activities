@@ -1,3 +1,4 @@
+from binhex import LINELEN
 import os
 import json
 import getpass
@@ -433,7 +434,25 @@ def atualizarProdutos():
     if resposta == 1:
         acessoFuncionario()
     else:
-        atualizarProdutos()        
+        atualizarProdutos() 
+
+
+
+def verificaCodigoCorreto():
+    dados = buscarDados("products")
+    listProductsCodes = list(dados.keys())
+    
+    codigo = recebeInt("Digite o codigo do Produto: ")
+    codigo = str(codigo)
+    for i in listProductsCodes:
+        if codigo != i:
+            print("Codigo não existe, digite novamente!")
+            codigo = int(codigo)
+            return verificaCodigoCorreto()        
+        else:
+            codigo = int(codigo)
+            return codigo
+       
 
 def registrarCompras():
     #informar login do cliente
@@ -442,9 +461,53 @@ def registrarCompras():
     #se o produto nao estiver diponivel deve dar um erro e impedir a compra.
     #criar forma de encerra c compra e armazenar ela no carrinho
     nomeCliente = verificaCliente()
+    codigo = verificaCodigoCorreto()
+    codigo = str(codigo)
 
+    cont = 0
+
+    dados = buscarDados("products")
+    listProductsKeys = list(dados.keys())
+    listProductsValues = list(dados.values())
+
+    for i in listProductsKeys():
+        cont +=1
+        if i == codigo:
+            break
+    
+    for i in listProductsValues():
+        cont2 +=1
+        if cont == cont2:
+            nomeFilme = i.get("nome")
+            preco = i.get("preco")
+            tipo = i.get("tipo")
+            if tipo == 1:
+                tipon = ""
+            disponivel = i.get("canBuy")
+            break
+
+    print("Nome: ",nomeFilme)
+    print("Tipo: ", tipon)
 
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+print()
 
 
 def verificaCliente(): #terminar
