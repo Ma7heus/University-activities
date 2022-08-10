@@ -179,6 +179,13 @@ def cadastrarProdutos():
 
     SalvarDados("products",dados)
 
+    print("Novo produto adicionado com sucesso!")
+    resposta = recebeInt("Sair (1), Novo cadastro (2): ")
+    if resposta == 1:
+        acessoFuncionario()
+    else:
+        cadastrarProdutos()
+
 
 #Funcao para receber e verificar se codigo ja existe
 def verificaCodigo():
@@ -416,8 +423,10 @@ def atualizarProdutos():
     else:
         atualizarProdutos()        
 
+def voltarAtualizarProduto()
+    resposta = recebeInt("Nova altera")
 
-    print()
+
 def relatorioPodutos():
     print()
 def registrarCompras():

@@ -8,7 +8,7 @@
     "987654": {
         "nome": "Deus da Guerra",
         "tipo": 3,
-        "preco": 40.21,
+        "preco": 58.31,
         "canBuy": false
     },
     "234567": {
@@ -34,5 +34,11 @@
         "tipo": 2,
         "preco": 65.35,
         "canBuy": false
+    },
+    "131851": {
+        "nome": "The Big Bang Theory",
+        "tipo": 1,
+        "preco": 20.35,
+        "canBuy": true
     }
 }
