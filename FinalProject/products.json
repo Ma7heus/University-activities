@@ -40,5 +40,11 @@
         "tipo": 1,
         "preco": 20.35,
         "canBuy": true
+    },
+    "517811": {
+        "nome": "Guardioes Da Galaxia: Volume I",
+        "tipo": 2,
+        "preco": 635.54,
+        "canBuy": true
     }
 }

@@ -3,5 +3,6 @@ import json
 import getpass
 
 #nerdflix = iniciar()
-atualizarProdutos()
 
+n = verificaCliente()
+print(n)
