@@ -1,6 +1,7 @@
 import os
 import json
 import getpass
+from pickle import TRUE
 
 def iniciar():
     os.system("cls")
@@ -233,7 +234,7 @@ def cadastroNovoCliente(): #FINALIZADA
         ID = i
     ID = ID + 1
     ID = str(ID)        
-    dados.update({ID:{"id": ID, "userName": nome, "password": sobrenome, "carrinho":{}}})
+    dados.update({ID:{"id": ID, "nome": nome, "sobrenome": sobrenome, "carrinho":{}}})
     SalvarDados("clients",dados)
       
     return True
@@ -442,6 +443,7 @@ def registrarCompras():
     #criar forma de encerra c compra e armazenar ela no carrinho
     nomeCliente = verificaCliente()
 
+
     
 
 
@@ -454,21 +456,21 @@ def verificaCliente(): #terminar
     listClientes = list(dados.values())
     for i in listClientes:
         nome = i.get("nome")
-        print
         if nome == nomeCliente:
-            return nomeCliente
+            encontrou = True
 
     if encontrou ==False:
         print("Cliente nao encontrado!")
-
-
-
-
-
-
-    print()
-
-
+        print("Sair (1), tentar novamente (2):")
+        resposta = recebeInt("Sua Resposta: ")
+        if resposta == 1:
+            acessoFuncionario()
+        elif resposta == 2:
+            return verificaCliente()
+        else:
+            acessoFuncionario()
+    elif encontrou:
+        return nomeCliente
 
 
 def relatorioPodutos():
