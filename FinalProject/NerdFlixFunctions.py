@@ -441,53 +441,97 @@ def atualizarProdutos():
 def verificaCodigoCorreto():
     dados = buscarDados("products")
     listProductsCodes = list(dados.keys())
+    find = False
     
     codigo = recebeInt("Digite o codigo do Produto: ")
     codigo = str(codigo)
     for i in listProductsCodes:
-        if codigo != i:
-            print("Codigo não existe, digite novamente!")
-            codigo = int(codigo)
-            return verificaCodigoCorreto()        
-        else:
+        if codigo == i:
             codigo = int(codigo)
             return codigo
+    if find ==False:
+        print("Codigo não existe, digite novamente!")
+        codigo = int(codigo)
+        return verificaCodigoCorreto()
        
 
-def registrarCompras():
+def registrarCompras(nomeCliente):
     #informar login do cliente
     #informar o codigo de cada produto, devera mostrar o nome para
     #usuario saber se esta correto
     #se o produto nao estiver diponivel deve dar um erro e impedir a compra.
     #criar forma de encerra c compra e armazenar ela no carrinho
-    nomeCliente = verificaCliente()
     codigo = verificaCodigoCorreto()
     codigo = str(codigo)
-
     cont = 0
-
+    cont2 = 0
     dados = buscarDados("products")
     listProductsKeys = list(dados.keys())
     listProductsValues = list(dados.values())
 
-    for i in listProductsKeys():
-        cont +=1
+    for i in listProductsKeys:
+        cont += 1
         if i == codigo:
             break
     
-    for i in listProductsValues():
+    for j in listProductsValues:
         cont2 +=1
+        produto = j
         if cont == cont2:
-            nomeFilme = i.get("nome")
-            preco = i.get("preco")
-            tipo = i.get("tipo")
-            if tipo == 1:
-                tipon = ""
-            disponivel = i.get("canBuy")
+            nomeFilme = produto.get("nome")
+            preco = produto.get("preco")
+            tipo = produto.get("tipo")
+            disponivel = produto.get("canBuy")
             break
+    if tipo == 1:
+        tipon = "Serie"
+    elif tipo ==2:
+        tipon = "Filme"
+    else:
+        tipon = "Documentario"
+    
+    if disponivel:
+        print("\n")
+        print("***PRODUTO ENCONTRADO***\n")
+        print("Nome: ",nomeFilme)
+        print("Tipo: ",tipon)
+        print("Preco: R$ ",preco)
+        print("\n")
+        print("Deseja seguir com a compra? Sim (1), Nao (2)")
+        resposta = recebeInt("Sua resposta: ")
+        if resposta == 1:
+            comprar = True
+        else:
+            comprar = False
+    else:
+        print("Nome: ",nomeFilme)
+        print("Tipo: ",tipon)
+        print("Preco: R$ ",preco)
+        print("\n")
+        print("ERRO! O produto selecionado nao esta disponivel.\n")
+        print("Buscar outro: (1), sair: (2)")
+        resposta = recebeInt("Sua resposta: ")
+        if resposta == 1:
+            #nesse tentar novamente tentar repetir apenas a parte de buscar o produto
+            registrarCompras()
+        else:
+            acessoFuncionario()
 
-    print("Nome: ",nomeFilme)
-    print("Tipo: ", tipon)
+    if comprar:
+        dadosCliente = buscarDados("clients")
+        listClientKeys = list(dadosCliente.keys())
+        listClientValues = list(dadosCliente.values())
+        print("comprado")
+    
+    
+
+
+    else:
+        acessoFuncionario()
+
+
+
+
 
     
 
@@ -510,9 +554,9 @@ def registrarCompras():
 print()
 
 
-def verificaCliente(): #terminar
+def verificaCliente(): 
     os.system("cls || clear")
-    nomeCliente = recebeStr("Nome do Cliente: ")
+    nomeCliente = recebeStr("Informe o nome do Cliente: ")
     encontrou = False
 
     dados = buscarDados("clients")
