@@ -4,6 +4,7 @@ import getpass
 
 #nerdflix = iniciar()
 
-registrarCompras(verificaCliente())
 
-#atualizarProdutos()
+#verificaCarrinho("Matheus")
+#registrarCompras(verificaCliente())
+relatorioCompras()

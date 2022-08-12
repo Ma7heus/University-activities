@@ -5,19 +5,37 @@
         "sobrenome": "Biasi",
         "carrinho": {
             "1": {
-                "123456": {
-                    "nomeFilme": "Como Treinar seu Dragão",
-                    "tipoFilme": 2,
-                    "preco": 238.99
-                }
+                "codigo": "123456",
+                "nomeFilme": "Como treinar seu Dragao",
+                "tipoFilme": 2,
+                "preco": 53.04,
+                "data": "09/12/22",
+                "hora": "09:16:56"
+            },
+            "2": {
+                "codigo": "123125",
+                "nomeFilme": "Spider Man: No way Home",
+                "tipoFilme": 2,
+                "preco": 58.24,
+                "data": "08/12/22",
+                "hora": "09:16:56"
             }
         }
     },
     "2": {
         "id": "2",
-        "nome": "matheus 3",
+        "nome": "Paulo",
         "sobrenome": "Biasi 3",
-        "carrinho": {}
+        "carrinho": {
+            "1": {
+                "codigo": "123125",
+                "nomeFilme": "Spider Man: No way Home",
+                "tipoFilme": 2,
+                "preco": 58.24,
+                "data": "08/12/22",
+                "hora": "14:11:29"
+            }
+        }
     },
     "3": {
         "id": "3",

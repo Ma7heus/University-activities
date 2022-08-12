@@ -3,11 +3,7 @@ import json
 import os
 os.system("cls||clear")
 
-with open("dados.json", encoding="utf-8") as dbDados:
-    dados = json.load(dbDados)
+data = "10/02/2022"
+hora = "21:32"
 
-    a = list(dados["usuarios"].values())
-    userValue = list(dados["products"].values())
-
-x = json.dumps(a)
-print(x)
+print("Data da compra:",data,hora)
