@@ -239,11 +239,35 @@ def cadastroNovoCliente(): #FINALIZADA
     for i in listID:
         ID = i
     ID = ID + 1
-    ID = str(ID)        
-    dados.update({ID:{"id": ID, "nome": nome, "sobrenome": sobrenome, "carrinho":{}}})
+    ID = str(ID)
+
+    #dados.update({ID:{"id": ID, "nome": nome, "sobrenome": sobrenome, "carrinho":{}}})
+    # SalvarDados("clients",dados)
+
+    dados.update({
+            ID:{
+                "id": ID, "nome": nome, "sobrenome": sobrenome, "carrinho": {
+                    "":{
+                        "codigo":"", 
+                        "nomeFilme":"",
+                        "tipoFilme":"",
+                       "data": "",
+                        "hora": ""
+                        
+                    }
+                }
+            }
+        })
+
     SalvarDados("clients",dados)
-      
-    return True
+
+    print("Nova Cliente (1) sair (2)")
+    resposta = recebeInt("Sua resposta: ")
+    if resposta == 1:
+        cadastroNovoCliente()
+    else:
+        acessoFuncionario()
+
 
 def validacaoUsuarioNovo(userName,listUserName):
     for i in listUserName:
@@ -476,6 +500,7 @@ def registrarCompras(nomeCliente):
     dados = buscarDados("products")
     listProductsKeys = list(dados.keys())
     listProductsValues = list(dados.values())
+
     for i in listProductsKeys:
         cont += 1
         if i == codigo:
@@ -539,10 +564,14 @@ def registrarCompras(nomeCliente):
     
         for i in listClientValues:
             if nomeCliente == i.get("nome"):
+
                 nomeCliente = i.get("nome")
                 idCliente = i.get("id")
                 sobrenomeCliente = i.get("sobrenome")
-                carrinhoCliente = i.get("carinho")
+                carrinhoClienteItens = list(i["carrinho"].values())
+                carrinhoClienteCompras = list(i["carrinho"].keys())
+
+                #carrinhoCliente = i.get("carinho")
                 idCompra = idCompra + 1
                 idCompra = str(idCompra)       
                 x = datetime.datetime.now()
