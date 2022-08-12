@@ -42,6 +42,72 @@ os.system("cls||clear")
 #listUsers3 = list(dados.items())
 #print(len(listUsers1),len(listUsers2),len(listUsers3))
 
-nerdflix = iniciar()
+#nerdflix = iniciar()
 
 
+if find:
+        for i in listProductsValues:
+            cont2 += 1
+            if cont2 == cont:
+                nome = i.get("nome")
+                tipo = i.get("tipo")
+                preco = i.get("preco")
+                canBuy = i.get("canBuy")
+
+                print("\n")
+                print("Nome:  ",nome)
+                print("Tipo:  ",tipo)
+                print("preco: ",preco)
+                print("Dispon:",canBuy)
+                print("\n")
+                
+                #PARTE NOVA
+                print("O que deseja editar?")
+                print("Nome           (1)")
+                print("Tipo           (2)")
+                print("Preco          (3)")
+                print("Disp. p/ venda (4)\n")
+                print("Nova Consulta (5), sair (6).")
+                resposta = recebeInt("Resposta: ")
+                
+                if resposta == 1:
+                    novoNome = str(input("Informe o nome: "))                    
+                    dados.update({codigo : {"nome" : novoNome, "tipo" : tipo, "preco" : preco, "canBuy" : canBuy}})
+                    SalvarDados("products",dados)
+
+                elif resposta == 2:
+                    novoTipo = recebeInt("Informe o Tipo: ")                   
+                    dados.update({codigo : {"nome" : nome, "tipo" : novoTipo, "preco" : preco, "canBuy" : canBuy}})
+                    SalvarDados("products",dados)
+
+                elif resposta == 3:
+                    novoPreco = float(input("Novo Preço: "))                  
+                    dados.update({codigo : {"nome" : nome, "tipo" : tipo, "preco" : novoPreco, "canBuy" : canBuy}})
+                    SalvarDados("products",dados)
+
+                elif resposta ==4:
+                    canBuyNew = recebeInt("Tipo: ")
+                    dados.update({codigo : {"nome" : nome, "tipo" : tipo, "preco" : preco, "canBuy" : canBuyNew}})
+                    SalvarDados("products",dados)
+
+                elif resposta == 5:
+                    consultaProdutosPorCodigo()
+                else:
+                    acessoFuncionario()
+
+
+    "2": {
+        "id": "2",
+        "nome": "matheus 3",
+        "sobrenome": "Biasi 3",
+        "carrinho": {}
+
+dados.update({ID:{"id": ID, "nome": nome, "sobrenome": sobrenome, "carrinho":{}}})
+    SalvarDados("clients",dados)
+
+        "123456": {
+        "nome": "Como Treinar seu Dragão",
+        "tipo": 2,
+        "preco": 238.99,
+        "canBuy": true
+        }

@@ -3,7 +3,15 @@
         "id": "1",
         "nome": "Matheus",
         "sobrenome": "Biasi",
-        "carrinho": {}
+        "carrinho": {
+            "1": {
+                "123456": {
+                    "nomeFilme": "Como Treinar seu Dragão",
+                    "tipoFilme": 2,
+                    "preco": 238.99
+                }
+            }
+        }
     },
     "2": {
         "id": "2",

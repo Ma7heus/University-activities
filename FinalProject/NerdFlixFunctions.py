@@ -461,14 +461,16 @@ def registrarCompras(nomeCliente):
     #usuario saber se esta correto
     #se o produto nao estiver diponivel deve dar um erro e impedir a compra.
     #criar forma de encerra c compra e armazenar ela no carrinho
+    CompraFinalizada = False
+    #while CompraFinalizada == False:
     codigo = verificaCodigoCorreto()
     codigo = str(codigo)
     cont = 0
     cont2 = 0
+    idCompra = 0
     dados = buscarDados("products")
     listProductsKeys = list(dados.keys())
     listProductsValues = list(dados.values())
-
     for i in listProductsKeys:
         cont += 1
         if i == codigo:
@@ -504,11 +506,13 @@ def registrarCompras(nomeCliente):
         else:
             comprar = False
     else:
+        print("\n")
+        print("***PRODUTO ENCONTRADO***\n")
         print("Nome: ",nomeFilme)
         print("Tipo: ",tipon)
         print("Preco: R$ ",preco)
         print("\n")
-        print("ERRO! O produto selecionado nao esta disponivel.\n")
+        print("ERRO! O produto selecionado nao esta disponivel para venda.\n")
         print("Buscar outro: (1), sair: (2)")
         resposta = recebeInt("Sua resposta: ")
         if resposta == 1:
@@ -516,42 +520,48 @@ def registrarCompras(nomeCliente):
             registrarCompras()
         else:
             acessoFuncionario()
-
     if comprar:
         dadosCliente = buscarDados("clients")
         listClientKeys = list(dadosCliente.keys())
-        listClientValues = list(dadosCliente.values())
-        print("comprado")
+        listClientValues = list(dadosCliente.values())     
     
-    
+        for i in listClientValues:
+            if nomeCliente == i.get("nome"):
+                nomeCliente = i.get("nome")
+                idCliente = i.get("id")
+                sobrenomeCliente = i.get("sobrenome")
+                carrinhoCliente = i.get("carinho")
+                idCompra = idCompra + 1
+                idCompra = str(idCompra)
+                break        
 
+        dadosCliente.update({
+            idCliente:{
+                "id": idCliente, "nome": nomeCliente, "sobrenome": sobrenomeCliente, "carrinho": {
+                    idCompra:{
+                        codigo: {
+                        "nomeFilme":nomeFilme,
+                        "tipoFilme":tipo,
+                        "preco":preco
+                        }
+                    }
+                }
+            }
+        })
+
+        SalvarDados("clients",dadosCliente)
+        print("Compra realizada!\n")
+        print("Nova compra (1) sair (2)")
+        resposta = recebeInt("Sua resposta: ")
+        if resposta == 1:
+            registrarCompras()
+        else:
+            acessoFuncionario()
 
     else:
         acessoFuncionario()
-
-
-
-
-
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-print()
+   
 
 
 def verificaCliente(): 
