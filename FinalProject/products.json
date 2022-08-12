@@ -46,5 +46,11 @@
         "tipo": 2,
         "preco": 635.54,
         "canBuy": true
+    },
+    "1891": {
+        "nome": "Sonic",
+        "tipo": 2,
+        "preco": 100.0,
+        "canBuy": true
     }
 }
