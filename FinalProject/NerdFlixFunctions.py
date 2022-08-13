@@ -6,10 +6,11 @@ def iniciar():
     os.system("cls")
     print(" -------SEJA BEM VINDO AO NERDFLIX--------\n\n")
     print("DIGITE A ACAO QUE DESEJA SEGUIR:")
+    print("\n")
     print("Desejo me cadastrar: (1)")
     print("Desejo fazer login:  (2)")
     print("Desejo sair:         (3)")
-    resposta = int(input("Sua resposta: "))
+    resposta = recebeInt("Sua resposta: ")
 
     if resposta == 1:
         cadastrarUsuario()
@@ -74,6 +75,15 @@ def recebeInt(msg):
             break
     return valor
 
+def recebeStr(msg):
+    while True:
+        n = str(input(msg))
+        if type(n) == str:
+            return n
+        else:
+            print("ERRO! Valor precisa ser do tipo texto.\n")       
+
+
 #fazer validacao de login
 def login(): # NAO FINALIZADA
     os.system("cls")
@@ -110,7 +120,7 @@ def acessoFuncionario(): #NAO FINALIZADA
     print("Relatorios de produtos (5)")
     print("Registrar venda        (6)")
     print("Sair                   (7)\n")
-    resposta = int(input("Digite a opcao que deseja: "))
+    resposta = recebeInt("Digite a opcao que deseja: ")
 
     if resposta ==1:        
         cadastrarCliente()      
@@ -139,7 +149,7 @@ def cadastrarCliente(): #FINALIZADA
     print("Consulta cliente        (2)")
     print("Editar dados do cliente (3)")
     print("Voltar                  (4)")
-    resposta = int(input("Digite a opcao que deseja: "))
+    resposta = recebeInt("Digite a opcao que deseja: ")
 
     if resposta == 1:
         cadastroNovoCliente()
@@ -162,9 +172,9 @@ def cadastrarProdutos():
 
     codigo = verificaCodigo()
     nome = str(input("Digite o nome do produto: "))
-    preco = float(input("Digite o preco do produto: R$ "))
-    tipo = int(input("Digite o TIPO do produto:\n(1) para série, (2) filme, (3) documentário: "))
-    disponivel = int(input("Digite se esta diponivel para venda:\n(1) sim, (2) nao: "))
+    preco = float(input("Digite o preco do produto: R$ ")) 
+    tipo = recebeInt("Digite o TIPO do produto:\n(1) para série, (2) filme, (3) documentário: ")
+    disponivel = recebeInt("Digite se esta diponivel para venda:\n(1) sim, (2) nao: ")
     if disponivel == 1:
         canBuy = True
     elif disponivel == 2:
@@ -178,6 +188,14 @@ def cadastrarProdutos():
     dados.update({codigo : {"nome" : nome, "tipo" : tipo, "preco" : preco, "canBuy" : canBuy}})
 
     SalvarDados("products",dados)
+
+    print("\n")
+    print("Novo produto adicionado com sucesso!")
+    resposta = recebeInt("Sair (1), Novo cadastro (2): ")
+    if resposta == 1:
+        acessoFuncionario()
+    else:
+        cadastrarProdutos()
 
 
 #Funcao para receber e verificar se codigo ja existe
@@ -266,7 +284,7 @@ def cadastrarUsuario():
     print("\n")    
     print("Fazer login: (1)")
     print("Sair:        (2)")
-    resposta2 = input("Selecione a opcao desejada: ")
+    resposta2 = recebeInt("Selecione a opcao desejada: ")
     if resposta2 == 1:
         login()
     elif resposta2 == 2:
@@ -282,7 +300,7 @@ def consultaProdutosPorCodigo(): #FINALIZADA
     find = False
     cont = 0
     cont2 = 0
-    codigo = recebeInt("Digite o codigo que deseja: ")
+    codigo = recebeInt("Digite o codigo que deseja editar: ")
     codigo = str(codigo)
     dados = buscarDados("products")
     listProductsCodes = list(dados.keys())
@@ -317,8 +335,6 @@ def consultaProdutosPorCodigo(): #FINALIZADA
                 print("Tipo:  ",tipon)
                 print("preco: ",preco)
                 print("Dispon:",canBuy)
-                print("\n")
-
                 print("Nova Consulta (1), sair (2).")
                 resposta = recebeInt("Resposta: ")
                 if resposta == 1:
@@ -341,7 +357,7 @@ def atualizarProdutos():
     find = False
     cont = 0
     cont2 = 0
-    codigo = recebeInt("Digite o codigo do produto que deseja editar: ")
+    codigo = recebeInt("Digite o codigo que deseja editar: ")
     codigo = str(codigo)
     dados = buscarDados("products")
     listProductsCodes = list(dados.keys())
@@ -359,27 +375,18 @@ def atualizarProdutos():
             if cont2 == cont:
                 nome = i.get("nome")
                 tipo = i.get("tipo")
-
-                if tipo == 1:
-                    tipon = ("Seriado")
-                elif tipo ==2:
-                    tipon = ("Filme")
-                elif tipo == 3:
-                    tipon = ("Documentario")
-                else:
-                    tipon = ("desconhecido")
-
                 preco = i.get("preco")
                 canBuy = i.get("canBuy")
+
                 print("\n")
                 print("Nome:  ",nome)
-                print("Tipo:  ",tipon)
+                print("Tipo:  ",tipo)
                 print("preco: ",preco)
                 print("Dispon:",canBuy)
                 print("\n")
                 
                 #PARTE NOVA
-                print("O que deseja editar? ")
+                print("O que deseja editar?")
                 print("Nome           (1)")
                 print("Tipo           (2)")
                 print("Preco          (3)")
@@ -387,20 +394,30 @@ def atualizarProdutos():
                 print("Nova Consulta (5), sair (6).")
                 resposta = recebeInt("Resposta: ")
                 
-                resposta = recebeInt("Resposta: ")
                 if resposta == 1:
-                    print()
+                    novoNome = str(input("Informe o nome: "))                    
+                    dados.update({codigo : {"nome" : novoNome, "tipo" : tipo, "preco" : preco, "canBuy" : canBuy}})
+                    SalvarDados("products",dados)
+
                 elif resposta == 2:
-                    print()
+                    novoTipo = recebeInt("Informe o Tipo: ")                   
+                    dados.update({codigo : {"nome" : nome, "tipo" : novoTipo, "preco" : preco, "canBuy" : canBuy}})
+                    SalvarDados("products",dados)
+
                 elif resposta == 3:
-                    print()
+                    novoPreco = float(input("Novo Preço: "))                  
+                    dados.update({codigo : {"nome" : nome, "tipo" : tipo, "preco" : novoPreco, "canBuy" : canBuy}})
+                    SalvarDados("products",dados)
+
                 elif resposta ==4:
-                    print()
+                    canBuyNew = recebeInt("Tipo: ")
+                    dados.update({codigo : {"nome" : nome, "tipo" : tipo, "preco" : preco, "canBuy" : canBuyNew}})
+                    SalvarDados("products",dados)
+
                 elif resposta == 5:
                     consultaProdutosPorCodigo()
                 else:
                     acessoFuncionario()
-                
     else:
         print("\n")
         print("Produto nao cadastrado! Tente novamente (1), sair (2).")
@@ -410,11 +427,51 @@ def atualizarProdutos():
         else:
             acessoFuncionario()
 
+    print("Alteraçoes salvas com sucesso!")
+    resposta = recebeInt("sair(1), Nova alteração (2): ")
+    if resposta == 1:
+        acessoFuncionario()
+    else:
+        atualizarProdutos()        
+
+def registrarCompras():
+    #informar login do cliente
+    #informar o codigo de cada produto, devera mostrar o nome para
+    #usuario saber se esta correto
+    #se o produto nao estiver diponivel deve dar um erro e impedir a compra.
+    #criar forma de encerra c compra e armazenar ela no carrinho
+    nomeCliente = verificaCliente()
+
+    
+
+
+def verificaCliente(): #terminar
+    os.system("cls || clear")
+    nomeCliente = recebeStr("Nome do Cliente: ")
+    encontrou = False
+
+    dados = buscarDados("clients")
+    listClientes = list(dados.values())
+    for i in listClientes:
+        nome = i.get("nome")
+        print
+        if nome == nomeCliente:
+            return nomeCliente
+
+    if encontrou ==False:
+        print("Cliente nao encontrado!")
+
+
+
+
+
 
     print()
+
+
+
+
 def relatorioPodutos():
-    print()
-def registrarCompras():
     print()
 def relatorioCompras():
     print()
