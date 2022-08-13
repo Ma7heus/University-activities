@@ -1,6 +1,10 @@
+from binhex import LINELEN
+from cgi import print_arguments
 import os
 import json
 import getpass
+import datetime
+
 
 def iniciar():
     os.system("cls")
@@ -119,7 +123,8 @@ def acessoFuncionario(): #NAO FINALIZADA
     print("Atualizar produto      (4)")
     print("Relatorios de produtos (5)")
     print("Registrar venda        (6)")
-    print("Sair                   (7)\n")
+    print("Relatorio de vendas    (7)")
+    print("Sair                   (8)\n")
     resposta = recebeInt("Digite a opcao que deseja: ")
 
     if resposta ==1:        
@@ -133,8 +138,10 @@ def acessoFuncionario(): #NAO FINALIZADA
     elif resposta  ==5:
         relatorioPodutos()
     elif resposta ==6:
-        registrarCompras()
-    elif resposta  ==7:
+        registrarCompras(verificaCliente())
+    elif resposta ==7:
+        relatorioCompras()
+    elif resposta  ==8:
         sair()
     else:
         print("Opcao nao existente, tente novamente!")
@@ -232,11 +239,35 @@ def cadastroNovoCliente(): #FINALIZADA
     for i in listID:
         ID = i
     ID = ID + 1
-    ID = str(ID)        
-    dados.update({ID:{"id": ID, "userName": nome, "password": sobrenome, "carrinho":{}}})
+    ID = str(ID)
+
+    #dados.update({ID:{"id": ID, "nome": nome, "sobrenome": sobrenome, "carrinho":{}}})
+    # SalvarDados("clients",dados)
+
+    dados.update({
+            ID:{
+                "id": ID, "nome": nome, "sobrenome": sobrenome, "carrinho": {
+                    "":{
+                        "codigo":"", 
+                        "nomeFilme":"",
+                        "tipoFilme":"",
+                       "data": "",
+                        "hora": ""
+                        
+                    }
+                }
+            }
+        })
+
     SalvarDados("clients",dados)
-      
-    return True
+
+    print("Nova Cliente (1) sair (2)")
+    resposta = recebeInt("Sua resposta: ")
+    if resposta == 1:
+        cadastroNovoCliente()
+    else:
+        acessoFuncionario()
+
 
 def validacaoUsuarioNovo(userName,listUserName):
     for i in listUserName:
@@ -300,7 +331,7 @@ def consultaProdutosPorCodigo(): #FINALIZADA
     find = False
     cont = 0
     cont2 = 0
-    codigo = recebeInt("Digite o codigo que deseja editar: ")
+    codigo = recebeInt("Digite o codigo que deseja: ")
     codigo = str(codigo)
     dados = buscarDados("products")
     listProductsCodes = list(dados.keys())
@@ -432,48 +463,358 @@ def atualizarProdutos():
     if resposta == 1:
         acessoFuncionario()
     else:
-        atualizarProdutos()        
+        atualizarProdutos() 
 
-def registrarCompras():
+
+
+def verificaCodigoCorreto():
+    dados = buscarDados("products")
+    listProductsCodes = list(dados.keys())
+    find = False
+    
+    codigo = recebeInt("Digite o codigo do Produto: ")
+    codigo = str(codigo)
+    for i in listProductsCodes:
+        if codigo == i:
+            codigo = int(codigo)
+            return codigo
+    if find ==False:
+        print("Codigo não existe, digite novamente!")
+        codigo = int(codigo)
+        return verificaCodigoCorreto()
+       
+
+def registrarCompras(nomeCliente):
     #informar login do cliente
     #informar o codigo de cada produto, devera mostrar o nome para
     #usuario saber se esta correto
     #se o produto nao estiver diponivel deve dar um erro e impedir a compra.
     #criar forma de encerra c compra e armazenar ela no carrinho
-    nomeCliente = verificaCliente()
+    CompraFinalizada = False
+    #while CompraFinalizada == False:
+    codigo = verificaCodigoCorreto()
+    codigo = str(codigo)
+    cont = 0
+    cont2 = 0
+    idCompra = 0
+    dados = buscarDados("products")
+    listProductsKeys = list(dados.keys())
+    listProductsValues = list(dados.values())
+
+    for i in listProductsKeys:
+        cont += 1
+        if i == codigo:
+            break
+    
+    for j in listProductsValues:
+        cont2 +=1
+        produto = j
+        if cont == cont2:
+            nomeFilme = produto.get("nome")
+            preco = produto.get("preco")
+            tipo = produto.get("tipo")
+            disponivel = produto.get("canBuy")
+            break
+    if tipo == 1:
+        tipon = "Serie"
+    elif tipo ==2:
+        tipon = "Filme"
+    else:
+        tipon = "Documentario"
+    
+    if disponivel:
+        print("\n")
+        print("***PRODUTO ENCONTRADO***\n")
+        print("Nome: ",nomeFilme)
+        print("Tipo: ",tipon)
+        print("Preco: R$ ",preco)
+        print("\n")
+        print("Deseja seguir com a compra? Sim (1), Nao (2)")
+        resposta = recebeInt("Sua resposta: ")
+        if resposta == 1:
+            comprar = True
+        else:
+            comprar = False
+    else:
+        print("\n")
+        print("***PRODUTO ENCONTRADO***\n")
+        print("Nome: ",nomeFilme)
+        print("Tipo: ",tipon)
+        print("Preco: R$ ",preco)
+        print("\n")
+        print("ERRO! O produto selecionado nao esta disponivel para venda.\n")
+        print("Buscar outro: (1), sair: (2)")
+        resposta = recebeInt("Sua resposta: ")
+        if resposta == 1:
+            #nesse tentar novamente tentar repetir apenas a parte de buscar o produto
+            registrarCompras(verificaCliente())
+        else:
+            acessoFuncionario()
+
+
+
+    # a partir daqui funciona a parte que grava a venda
+
+    if comprar:
+        dadosCliente = buscarDados("clients")
+        listClientKeys = list(dadosCliente.keys())
+        listClientValues = list(dadosCliente.values())
+
 
     
+        for i in listClientValues:
+            if nomeCliente == i.get("nome"):
+
+                nomeCliente = i.get("nome")
+                idCliente = i.get("id")
+                sobrenomeCliente = i.get("sobrenome")
+                carrinhoClienteItens = list(i["carrinho"].values())
+                carrinhoClienteCompras = list(i["carrinho"].keys())
+
+                #carrinhoCliente = i.get("carinho")
+                idCompra = idCompra + 1
+                idCompra = str(idCompra)       
+                x = datetime.datetime.now()
+                dataCompra = x.strftime("%x")
+                horaCompra = x.strftime("%X")
+                                
+                break        
+
+        dadosCliente.update({
+            idCliente:{
+                "id": idCliente, "nome": nomeCliente, "sobrenome": sobrenomeCliente, "carrinho": {
+                    idCompra:{
+                        "codigo":codigo, 
+                        "nomeFilme":nomeFilme,
+                        "tipoFilme":tipo,
+                        "preco":preco,
+                        "data": dataCompra,
+                        "hora": horaCompra
+                        
+                    }
+                }
+            }
+        })
+
+        SalvarDados("clients",dadosCliente)
+        print("Compra realizada!\n")
+        print("Nova compra (1) sair (2)")
+        resposta = recebeInt("Sua resposta: ")
+        if resposta == 1:
+            registrarCompras(verificaCliente())
+        else:
+            acessoFuncionario()
+
+    else:
+        acessoFuncionario()
 
 
-def verificaCliente(): #terminar
+
+def verificaCarrinho(nomeCliente):
+    os.system("cls")
+    dados = buscarDados("clients")
+    dadosCliente = list(dados.values())
+    idCompra = []
+
+    for i in dadosCliente:
+        if i.get("nome") == nomeCliente:
+            carrinhoClienteValues = list(i["carrinho"].values())
+            carrinhoClienteKeys = list(i["carrinho"].keys())
+
+            break
+    
+    for i in carrinhoClienteKeys:
+        idCompra.append(int(i))
+        
+
+
+    print(carrinhoClienteValues)
+    print(carrinhoClienteKeys)
+    print(idCompra)
+
+
+def verificaCliente(): 
     os.system("cls || clear")
-    nomeCliente = recebeStr("Nome do Cliente: ")
+    nomeCliente = recebeStr("Informe o nome do Cliente: ")
     encontrou = False
 
     dados = buscarDados("clients")
     listClientes = list(dados.values())
     for i in listClientes:
         nome = i.get("nome")
-        print
         if nome == nomeCliente:
-            return nomeCliente
+            encontrou = True
 
     if encontrou ==False:
         print("Cliente nao encontrado!")
-
-
-
-
-
-
-    print()
-
-
+        print("Sair (1), tentar novamente (2):")
+        resposta = recebeInt("Sua Resposta: ")
+        if resposta == 1:
+            acessoFuncionario()
+        elif resposta == 2:
+            return verificaCliente()
+        else:
+            acessoFuncionario()
+    elif encontrou:
+        return nomeCliente
 
 
 def relatorioPodutos():
-    print()
+    os.system("cls")
+    print("Como deseja Visualizar? ")
+    print("Todos            (0)")
+    print("Filmes           (1)")
+    print("Series           (2)")
+    print("Documentarios    (3)")
+    print("Disponiveis      (4)")
+    print("Indisponiveis    (5)")
+    resposta = recebeInt("Sua resposta: ")
+    dados = buscarDados("products")
+    productsValues =list(dados.values())
+    productsKeys =list(dados.keys())
+
+    linha = 0
+    if resposta == 0:
+        print("                  (---TODOS---)\n")
+        print("Nome                  Tipo       Preco    Disponivel\n")
+        for i in productsValues:
+            linha = linha + 1
+            nome = i.get("nome")
+            tipo = i.get("tipo")
+            preco = i.get("preco")
+            disponivel = i.get("canBuy")
+
+            if tipo == 1:
+                tipon = "Serie"
+            elif tipo ==2:
+                tipon = "Filme"
+            else:
+                tipon = "Documentario"   
+
+            print("\n")
+            print(f"{linha} --- {nome} ___ {tipon} ___ {preco} ___ {disponivel}")
+    
+    elif resposta == 1:
+        print("                  (---FILMES---)\n")
+        print("Nome                  Tipo       Preco    Disponivel\n")
+        for i in productsValues:
+            linha = linha + 1
+            nome = i.get("nome")
+            tipo = i.get("tipo")
+            preco = i.get("preco")
+            disponivel = i.get("canBuy")
+
+            if tipo == 2:
+                print("\n")
+                print(f"{linha} --- {nome} ___ {tipo} ___ {preco} ___ {disponivel}")
+
+    elif resposta == 2:
+        print("                  (---SERIES---)\n")
+        print("Nome                  Tipo       Preco    Disponivel\n")
+        for i in productsValues:
+            linha = linha + 1
+            nome = i.get("nome")
+            tipo = i.get("tipo")
+            preco = i.get("preco")
+            disponivel = i.get("canBuy")
+
+            if tipo == 1:
+                print("\n")
+                print(f"{linha} --- {nome} ___ {tipo} ___ {preco} ___ {disponivel}")
+
+    elif resposta == 3:
+        print("                 (---DOCUMENTARIOS---)\n")
+        print("Nome                  Tipo       Preco    Disponivel\n")
+        for i in productsValues:
+            linha = linha + 1
+            nome = i.get("nome")
+            tipo = i.get("tipo")
+            preco = i.get("preco")
+            disponivel = i.get("canBuy")
+
+            if tipo == 3:
+                print("\n")
+                print(f"{linha} --- {nome} ___ {tipo} ___ {preco} ___ {disponivel}")
+
+    elif resposta == 4:
+        print("              (---TODOS DISPONIVEIS---)\n")
+        print("Nome                  Tipo       Preco    Disponivel\n")
+        for i in productsValues:
+            linha = linha + 1
+            nome = i.get("nome")
+            tipo = i.get("tipo")
+            preco = i.get("preco")
+            disponivel = i.get("canBuy")
+
+            if disponivel == True:
+                print("\n")
+                print(f"{linha} --- {nome} ___ {tipo} ___ {preco} ___ {disponivel}")
+                
+    elif resposta == 5:
+        print("           (---TODOS NAO DISPONIVEIS---)\n")
+        print("Nome                  Tipo       Preco    Disponivel\n")
+        for i in productsValues:
+            linha = linha + 1
+            nome = i.get("nome")
+            tipo = i.get("tipo")
+            preco = i.get("preco")
+            disponivel = i.get("canBuy")
+
+            if disponivel == False:
+                print("\n")
+                print(f"{linha} --- {nome} ___ {tipo} ___ {preco} ___ {disponivel}")
+    
+    else:
+        print("Opção nao existente!")
+    print("\n")
+    print("Novo relatorio (1) Sair (2)")
+    resposta = recebeInt("Sua resposta: ")
+    if resposta == 1:
+        relatorioPodutos()
+    else:
+        acessoFuncionario()        
+
 def relatorioCompras():
-    print()
+    os.system("cls")
+    Cliente = verificaCliente()
+    dadosCliente = buscarDados("clients")
+    dadosClienteValues = list(dadosCliente.values())
+    dadosClienteKeys = list(dadosCliente.keys())
+
+    for i in dadosClienteValues:
+        if Cliente == i.get("nome"):
+            carrinhoClienteItens = list(i["carrinho"].values())
+            carrinhoClienteCompras = list(i["carrinho"].keys())
+            break
+    
+    print("\n")
+    print("RELATORIO DE COMPRAS REALIZADAS")
+    print("-------------------------------")
+
+    for i in carrinhoClienteItens:
+        nomeFilme = i.get("nomeFilme")
+        tipo = i.get("tipoFilme")
+        preco = i.get("preco")
+        data = i.get("data")
+        hora = i.get("hora")
+
+        print("Nome: ",nomeFilme)
+        print("Tipo: ",tipo)
+        print("Preco: ",preco)
+        print("Data da compra:",data,hora)
+        print("\n")
+
+            
+    print("Nova Consulta (1), sair (2)")
+    resposta = recebeInt("Sua Resposta: ")
+    if resposta == 1:
+        relatorioCompras()
+    else:
+        acessoFuncionario()
+
+
+
+
+
 
 

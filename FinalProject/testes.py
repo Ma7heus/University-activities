@@ -3,21 +3,10 @@ import json
 import os
 os.system("cls||clear")
 
-<<<<<<< HEAD
 
 with open("dados.json", encoding="utf-8") as dados_json:
         dados = json.load(dados_json)
         userValue = list(dados["products"].values())
-=======
-#with open("users.json", "r", encoding="utf-8") as dados_json:
- #       dados = json.load(dados_json)
-  #      dados_json.close()
-  #      print(dados)
-         
-        #productsValues = list(dados["produtos"].values())
-        #clientesValues = list(dados["clientes"].values())
-        #usuariosValues = dict(dados["usuarios"].items())
->>>>>>> b067c80ea35b354274d1b8e4992552724a8a3b95
 
 
 #print(usuariosValues)
@@ -52,11 +41,6 @@ with open("dados.json", encoding="utf-8") as dados_json:
 nerdflix = iniciar()
 
 
-<<<<<<< HEAD
-produto["name"] = "MUDOU O NOME"
-print(produto["name"])
-print(userValue[1])
 
 
-=======
->>>>>>> b067c80ea35b354274d1b8e4992552724a8a3b95
+

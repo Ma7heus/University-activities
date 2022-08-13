@@ -1,8 +1,8 @@
 {
     "123456": {
-        "nome": "Como Treinar seu Dragão 2",
+        "nome": "Como Treinar seu Dragão",
         "tipo": 2,
-        "preco": 238.99,
+        "preco": 123.98,
         "canBuy": true
     },
     "987654": {
@@ -35,7 +35,6 @@
         "preco": 65.35,
         "canBuy": false
     },
-<<<<<<< HEAD
     "3265154": {
         "nome": "Arrow",
         "tipo": 1,
@@ -46,18 +45,12 @@
         "nome": "TWD",
         "tipo": 1,
         "preco": 200.0,
-=======
-    "131851": {
-        "nome": "The Big Bang Theory",
-        "tipo": 1,
-        "preco": 20.35,
         "canBuy": true
     },
-    "517811": {
-        "nome": "Guardioes Da Galaxia: Volume I",
+    "1891": {
+        "nome": "Sonic",
         "tipo": 2,
-        "preco": 635.54,
->>>>>>> 6f18492065aa816ae7bf973915a1fbd91ccd4278
+        "preco": 100.0,
         "canBuy": true
     }
 }
