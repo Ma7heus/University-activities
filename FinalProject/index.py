@@ -4,4 +4,5 @@ import getpass
 
 # nerdflix = iniciar()
 
-relatorioPodutos()
+#relatorioPodutos()
+registrarCompras(verificaCliente())

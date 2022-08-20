@@ -560,7 +560,8 @@ def registrarCompras(nomeCliente):
         listClientKeys = list(dadosCliente.keys())
         listClientValues = list(dadosCliente.values())
 
-
+        print(listClientValues)
+        print(len(listClientValues))
     
         for i in listClientValues:
             if nomeCliente == i.get("nome"):
@@ -571,9 +572,11 @@ def registrarCompras(nomeCliente):
                 carrinhoClienteItens = list(i["carrinho"].values())
                 carrinhoClienteCompras = list(i["carrinho"].keys())
 
-                #carrinhoCliente = i.get("carinho")
-                idCompra = idCompra + 1
-                idCompra = str(idCompra)       
+                #cria novo ID de compra para o carrinho do cliente
+                for j in carrinhoClienteCompras:
+                    idCompra = int(j)  # j vai ser o ultimo ID da lista
+                idCompra += 1
+                idCompra = str(idCompra)    
                 x = datetime.datetime.now()
                 dataCompra = x.strftime("%x")
                 horaCompra = x.strftime("%X")
@@ -581,6 +584,7 @@ def registrarCompras(nomeCliente):
                 break        
 
         dadosCliente.update({
+        #listClientValues.append({
             idCliente:{
                 "id": idCliente, "nome": nomeCliente, "sobrenome": sobrenomeCliente, "carrinho": {
                     idCompra:{
@@ -595,6 +599,9 @@ def registrarCompras(nomeCliente):
                 }
             }
         })
+
+
+        print(len(listClientValues))
 
         SalvarDados("clients",dadosCliente)
         print("Compra realizada!\n")
