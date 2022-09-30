@@ -1,10 +1,12 @@
 package br.com.uffs.ListaExercicios1;
 
-public class Exercicio7 {
+public class Teste {
 
 	public static void main(String[] args) {
-	for (int i = 100;i <=200;i++) {
+	int cont = 0;
+	for (int i = 1;cont <15;i++) {
 		if (verificaPrimo(i)) {
+			cont ++;
 			System.out.println(i);
 		}
 	}
