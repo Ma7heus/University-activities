@@ -26,8 +26,8 @@ public class Exercicio8 {
 			}
 				
 		}
-		System.out.println(menor);
-		System.out.println(maior);
+		System.out.println("O menor valor e: " + menor);
+		System.out.println("O maior valore e: " + maior);
 		
 		}
 
