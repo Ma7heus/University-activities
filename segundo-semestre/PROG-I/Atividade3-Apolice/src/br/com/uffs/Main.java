@@ -3,7 +3,8 @@ package br.com.uffs;
 import java.util.Scanner;
 
 public class Main {
-
+	//utilizando o contrutor sem atributos
+	
 	public static void main(String[] args) {
 		
 		Scanner input = new Scanner(System.in);
@@ -30,7 +31,7 @@ public class Main {
 		System.out.println();
 		System.out.println("Valor do desconto R$ " + apolice1.oferecerDesconto(apolice1.cidade));
 		
-		System.out.println(apolice1.numApolice);
+		System.out.println(Apolice.ultimoNumApolice);
 		
 	}
 

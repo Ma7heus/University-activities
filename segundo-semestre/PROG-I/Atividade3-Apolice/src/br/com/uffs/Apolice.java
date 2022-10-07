@@ -7,16 +7,19 @@ public class Apolice {
 	String cidade;
 	int idade;
 	float valorPremio;
-	static int ultimoNumApolice = 0;
+	public static int ultimoNumApolice = 0;
 	
 	public Apolice() {
-		numApolice = Apolice.ultimoNumApolice + 1;
+		this.numApolice = ultimoNumApolice++;
 	}
 			
-	public Apolice(String nomeSegurado,int idade,float valorPremio) {
-		this.nomeSegurado = nomeSegurado;
+	public Apolice(String nomeSegurado,String cidade, int idade,float valorPremio) {
+		this.nomeSegurado = nomeSegurado;;
+		this.cidade = cidade;
 		this.idade = idade;
 		this.valorPremio = valorPremio;
+		ultimoNumApolice++;
+		this.numApolice = Apolice.ultimoNumApolice;
 	}
 
 	public void imprimir() {
