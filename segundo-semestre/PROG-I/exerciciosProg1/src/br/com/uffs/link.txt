@@ -1,1 +1,0 @@
-link repositorio: https://github.com/Ma7heus/University-activities/tree/master/segundo-semestre/PROG-I/exerciciosProg1/src/br/com/uffs/ListaExercicios1
