@@ -1,4 +1,4 @@
-package br.com.uffs;
+package br.com.uffs.acampamento;
 
 public class Acampamento {
 
