@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="atividade2-jogo-adivinhacao/src"/>
+	<classpathentry kind="src" path="Atividade3-Apolice/src"/>
+	<classpathentry kind="src" path="atividade4/src"/>
+	<classpathentry kind="output" path="Atividade3-Apolice/bin"/>
+</classpath>

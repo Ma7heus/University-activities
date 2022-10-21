@@ -1,13 +1,12 @@
 package br.com.uffs.produto;
 
-
 public class Produto{
 
     private String nome;
     private float valor;
     private int quantidade;
-    
-    public Produto(String nome, float valor, int quantidade) {
+
+	public Produto(String nome, float valor, int quantidade) {
 		this.nome = nome;
 		this.valor = valor;
 		this.quantidade = quantidade;

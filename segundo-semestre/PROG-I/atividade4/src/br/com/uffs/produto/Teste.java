@@ -1,37 +1,31 @@
 package br.com.uffs.produto;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Teste {
 
 	public static void main(String[] args) {
+
+		Produto[] listaProdutos = new Produto[1];
 		
-		List<Produto> lista = new ArrayList<Produto>();
+		for (int i = 0;i < listaProdutos.length;i++) {
+		Scanner n = new Scanner(System.in);
+			
+		System.out.print("Digite o nome do produto: ");
+		String nome = n.next();
+	
+		System.out.print("Digite o codigo do produto: ");
+		float valor = n.nextFloat();
 		
-		Scanner input =  new Scanner(System.in);
-		System.out.println("Quantos produtos deseja cadastrar: ");
-		int num =  input.nextInt();
-		
-		for (int i = 0;i>=num;i++) {
-			System.out.print("Digite o nome do produto que deseja cadastrar: ");
-			String nome =  input.nextLine();
-			
-			System.out.print("Digite o preco do produto: ");			
-			int quant = input.nextInt();
-			
-			System.out.print("Digite o preco do produto: ");
-			float preco = input.nextFloat();			
-			
-			Produto produto =  new Produto(nome, preco, quant);
-			
-			lista.add(produto);
-			
+		System.out.print("Digite a quantidade: ");
+		int quant = n.nextInt();			
+			listaProdutos[i] = new Produto(nome, valor, quant);
 		}
 		
+		int n = 0;
+	
+		System.out.println(listaProdutos[n]);
 		
-		System.out.println(lista);
 		
 	}
 
