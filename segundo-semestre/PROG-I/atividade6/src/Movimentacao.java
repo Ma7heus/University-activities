@@ -1,20 +1,35 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Movimentacao {
-	private Date dataMovimentacao = new Date();
+	private LocalDate dataMovimentacao = LocalDate.now();
 	private Double valorOperacao;
 	private String tipoOperacao;
 	
-	public Movimentacao(Date dataMovimentacao, Double valorOperacao, String tipoOperacao) {
+	public Movimentacao(LocalDate dataMovimentacao, Double valorOperacao, String tipoOperacao) {
 		this.dataMovimentacao = dataMovimentacao;
 		this.valorOperacao = valorOperacao;
 		this.tipoOperacao = tipoOperacao;
 	}
 	
-	public Date getDataMovimentacao() {
+	public Movimentacao(Double valorOperacao, String tipoOperacao) {
+		this.valorOperacao = valorOperacao;
+		this.tipoOperacao = tipoOperacao;
+	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Movimentacao [dataMovimentacao: " + dataMovimentacao + ", valorOperacao: " + valorOperacao
+				+ ", tipoOperacao" + tipoOperacao + "]";
+	}
+
+
+
+	public LocalDate getDataMovimentacao() {
 		return dataMovimentacao;
 	}
-	public void setDataMovimentacao(Date dataMovimentacao) {
+	public void setDataMovimentacao(LocalDate dataMovimentacao) {
 		this.dataMovimentacao = dataMovimentacao;
 	}
 	public Double getValorOperacao() {

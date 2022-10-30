@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarteiraPrime {
 	
-	private List<Cliente> clientes;
+	private List<Cliente> clientes =  new ArrayList<>();
 	
 	
 	

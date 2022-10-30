@@ -5,7 +5,7 @@ public class Investimento extends Conta {
 
 	public Investimento(int numero, double saldo, String nome,
 			double taxaRendimento,Cliente cliente) {
-		super(numero, saldo, nome,cliente);
+		super(numero, saldo, nome, cliente);
 		this.taxaRendimento = taxaRendimento;
 	}
 
