@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="PROG-I/atividade2-jogo-adivinhacao/src/br/com/uffs/jogoAdivinhacao"/>
+	<classpathentry kind="src" path="PROG-I/Atividade3-Apolice/src/br/com/uffs"/>
+	<classpathentry kind="src" path="PROG-I/atividade4/src/br/com/uffs/acampamento"/>
+	<classpathentry kind="src" path="PROG-I/atividade4/src/br/com/uffs/produto"/>
+	<classpathentry kind="src" path="PROG-I/atividade5/src/br/uffs/banco"/>
+	<classpathentry kind="src" path="PROG-I/atividade6/src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
