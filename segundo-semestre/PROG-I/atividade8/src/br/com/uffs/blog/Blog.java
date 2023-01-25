@@ -54,6 +54,8 @@ public class Blog {
 					break;
 				case 3:
 					msg("Novo post de outros assuntos");
+					break;
+				case 4	
 				
 			
 			
