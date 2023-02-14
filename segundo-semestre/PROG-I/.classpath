@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="atividade2-jogo-adivinhacao/src"/>
 	<classpathentry kind="src" path="Atividade3-Apolice/src"/>
 	<classpathentry kind="src" path="atividade4/src"/>
+	<classpathentry kind="src" path="trabalho-final"/>
 	<classpathentry kind="output" path="Atividade3-Apolice/bin"/>
 </classpath>
