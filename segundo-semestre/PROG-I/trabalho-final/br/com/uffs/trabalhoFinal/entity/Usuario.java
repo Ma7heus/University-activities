@@ -1,4 +1,4 @@
-package br.com.uffs.trabalhoFinal;
+package br.com.uffs.trabalhoFinal.entity;
 
 import java.io.Serializable;
 

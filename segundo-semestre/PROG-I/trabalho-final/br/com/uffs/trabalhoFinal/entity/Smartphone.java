@@ -1,6 +1,8 @@
-package br.com.uffs.trabalhoFinal;
+package br.com.uffs.trabalhoFinal.entity;
 
 import java.io.Serializable;
+
+import br.com.uffs.trabalhoFinal.Enums.EnumModelo;
 
 public class Smartphone implements Serializable {
 
@@ -8,7 +10,7 @@ public class Smartphone implements Serializable {
 
 	private Long idSmartphone;
 
-    private Modelo modelo;
+    private EnumModelo modelo;
 
     private Usuario Usuario;
 
@@ -24,11 +26,11 @@ public class Smartphone implements Serializable {
 		this.idSmartphone = idSmartphone;
 	}
 
-	public Modelo getModelo() {
+	public EnumModelo getModelo() {
 		return modelo;
 	}
 
-	public void setModelo(Modelo modelo) {
+	public void setModelo(EnumModelo modelo) {
 		this.modelo = modelo;
 	}
 
