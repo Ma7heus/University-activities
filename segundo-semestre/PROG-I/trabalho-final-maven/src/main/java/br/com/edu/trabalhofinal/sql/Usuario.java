@@ -1,15 +1,23 @@
 package br.com.edu.trabalhofinal.sql;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+/**
+ * 
+ * @author biasi
+ *
+ */
 
-@Entity
 public class Usuario {
 	
-	@Id
 	private Long idUsuario;
 	
 	private String nome;
+	
+	private String cpf;
+
+	public Usuario(Long idUsuario, String nome) {
+		this.idUsuario = idUsuario;
+		this.nome = nome;
+	}
 
 	public Long getIdUsuario() {
 		return idUsuario;
@@ -27,4 +35,12 @@ public class Usuario {
 		this.nome = nome;
 	}
 
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	
 }
