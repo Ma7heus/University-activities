@@ -1,4 +1,4 @@
-package br.com.edu.trabalhofinal.sql;
+package br.com.edu.trabalhofinal.entidades;
 
 /**
  * 
@@ -6,7 +6,7 @@ package br.com.edu.trabalhofinal.sql;
  *
  */
 
-public class Usuario {
+public class Usuario extends GenericEntity {
 	
 	private Long idUsuario;
 	
@@ -17,6 +17,9 @@ public class Usuario {
 	public Usuario(Long idUsuario, String nome) {
 		this.idUsuario = idUsuario;
 		this.nome = nome;
+	}
+
+	public Usuario() {
 	}
 
 	public Long getIdUsuario() {

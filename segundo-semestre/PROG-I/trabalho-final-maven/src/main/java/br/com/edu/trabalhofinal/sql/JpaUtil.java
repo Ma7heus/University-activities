@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import br.com.edu.trabalhofinal.entidades.Usuario;
+
 public class JpaUtil {
 	
 	static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("DB_JDBC_SQLITE");

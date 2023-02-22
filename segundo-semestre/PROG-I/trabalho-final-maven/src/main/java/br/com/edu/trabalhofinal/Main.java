@@ -1,10 +1,12 @@
 package br.com.edu.trabalhofinal;
 
-public class Teste {
+import br.com.edu.trabalhofinal.forms.FormUsuario;
+
+public class Main {
 
 	public static void main(String[] args) {
 
-		
+		new FormUsuario();
 		
 		
 		

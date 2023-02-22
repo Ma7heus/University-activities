@@ -11,6 +11,8 @@ import java.util.List;
 
 import org.jboss.jandex.Main;
 
+import br.com.edu.trabalhofinal.entidades.Usuario;
+
 /**
  * 
  * @author Matheus Biasi
@@ -51,10 +53,16 @@ public class SQLiteJDBCDriverConnection {
 		disconnect();
 	}
 	
-	public static void insert(Usuario usuario) throws SQLException {
-		
+	public static void criandotabela(String sql) throws SQLException {
 		connect();
-				
+		Statement statement = createStatement();
+		statement.executeUpdate(sql);
+		System.out.println("Tabela criada");
+		disconnect();
+	}
+	
+	public static void insert(Usuario usuario) throws SQLException {
+		connect();
 		String sql = " INSERT INTO USUARIO (IDUSUARIO, NOME) VALUES(?,?)";
 		PreparedStatement prepState = conn.prepareStatement(sql);
 		prepState.setLong(1, usuario.getIdUsuario());
@@ -88,15 +96,10 @@ public class SQLiteJDBCDriverConnection {
 		    lista.add(usuario);
 		}
 		
-		
-		
-		
 		rs.close();
 		pstmt.close();
 		disconnect();
-		
 		return lista;
-		
 	}
 	
 	public static void dropTable(String nomeTabela) throws SQLException {
