@@ -3,3 +3,11 @@
 	Valor da hora: 100,00				Valor da hora: 50.00
 	Salário: 12000.00					Salário: 11025.00
 */
+
+#include <stdio.h>
+
+int main() {
+	printf("hello motherfucker\n");
+	return 0;
+
+}

@@ -3,5 +3,6 @@
         "activityBar.background": "#2A301A",
         "titleBar.activeBackground": "#3B4325",
         "titleBar.activeForeground": "#FBFBF8"
-    }
+    },
+    "cmake.sourceDirectory": "/workspaces/University-activities/terceiro-semestre/estrutura_de_dados/lista_exercicios_1"
 }
