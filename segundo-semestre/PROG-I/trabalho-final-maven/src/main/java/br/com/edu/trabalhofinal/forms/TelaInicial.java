@@ -1,62 +1,44 @@
 package br.com.edu.trabalhofinal.forms;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class TelaInicial extends JFrame {
-    
-	private static final long serialVersionUID = 1L;
-	private JButton btnCadastro;
-    
+
     public TelaInicial() {
-        
-        super("Tela Inicial");
-        
-        // Cria√ß√£o dos componentes
-        JLabel lblTitulo = new JLabel("Bem-vindo √† minha aplica√ß√£o!");
-        lblTitulo.setFont(new Font("Arial", Font.BOLD, 18));
-        
-        JLabel lblDescricao = new JLabel("Esta √© uma aplica√ß√£o de exemplo usando Swing.");
-        
-        btnCadastro = new JButton("Cadastro de Usu√°rio");
-        btnCadastro.addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                abrirCadastroUsuario();
-            }
-        });
-        
-        // Adi√ß√£o dos componentes ao painel
-        JPanel painel = new JPanel(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.anchor = GridBagConstraints.CENTER;
-        painel.add(lblTitulo, gbc);
-        
-        gbc.gridy = 1;
-        painel.add(lblDescricao, gbc);
-        
-        gbc.gridy = 2;
-        painel.add(btnCadastro, gbc);
-        
-        // Configura√ß√µes da janela
-        setContentPane(painel);
-        setSize(800, 800);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        // Define o tÌtulo da janela
+        setTitle("Tela Inicial");
+
+        // Define o tamanho da janela
+        setSize(400, 300);
+
+        // Centraliza a janela no meio da tela
+        setLocationRelativeTo(null);
+
+        // Define que ao fechar a janela, o programa ser· encerrado
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        // Cria um painel para colocar os botıes
+        JPanel painelBotoes = new JPanel(new GridLayout(2, 1, 10, 10));
+
+        // Cria os botıes
+        JButton btnCadastroUsuario = new JButton("Cadastro de Usu·rio");
+        JButton btnCadastroSmartphone = new JButton("Cadastro de Smartphone");
+
+        // Define o tamanho dos botıes
+        btnCadastroUsuario.setPreferredSize(new Dimension(200, 80));
+        btnCadastroSmartphone.setPreferredSize(new Dimension(200, 80));
+
+        // Adiciona os botıes ao painel
+        painelBotoes.add(btnCadastroUsuario);
+        painelBotoes.add(btnCadastroSmartphone);
+
+        // Adiciona o painel ‡ janela
+        getContentPane().add(painelBotoes, BorderLayout.CENTER);
     }
-    
-    private void abrirCadastroUsuario() {
-        FormUsuario formulario = new FormUsuario();
-    }
-    
+
     public static void main(String[] args) {
-        //TelaInicial telaInicial = new TelaInicial();
-        
-        TelaListagem t = new TelaListagem();
+        // Cria a janela e a torna visÌvel
+        TelaInicial tela = new TelaInicial();
+        tela.setVisible(true);
     }
 }
