@@ -1,9 +1,10 @@
 #include <stdio.h>
+
 int main() {
-    printf("Digite a quantidade de horas trabalhadas: \n");
+    printf("Horas trabalhadas: \n");
     double horas;
     scanf("%lf",&horas);
-    printf("Digite o valor de cada hora trabalhada: \n");
+    printf("Valor da hora: \n");
     double valor;
     scanf("%lf",&valor);
 
@@ -15,7 +16,7 @@ int main() {
         resultado = horas * valor;
     }
 
-    printf("%.2lf", resultado);
+    printf("Salario: %.2lf", resultado);
  
     return 0;
 
