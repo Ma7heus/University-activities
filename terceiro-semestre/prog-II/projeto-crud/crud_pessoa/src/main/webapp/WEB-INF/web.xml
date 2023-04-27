@@ -34,7 +34,7 @@
     <!-- Indica qual página o usuário será enviado ao acessar o sistema (localhost:8080/projeto) -->
     <!-- Se não informado o usuário será encaminhado para index.html por padrão -->
     <welcome-file-list>
-        <welcome-file>login.xhtml</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
     
     <!-- Configura páginas de Erro para erros HTML ou exceções checked de código (podem ser especificadas diversas página para tipos específicos) -->
