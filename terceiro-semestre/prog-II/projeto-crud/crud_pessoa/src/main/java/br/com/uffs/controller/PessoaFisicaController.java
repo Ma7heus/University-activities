@@ -38,7 +38,18 @@ public class PessoaFisicaController implements Serializable {
 		
 	}
 	
+	public void salvar() {
+		System.out.println("Cliente salvo");
+	}
 	
+	public void remover() {
+		System.out.println("Remover");
+	}
+	
+	public void novoCadastro() {
+		System.out.println("cadastrando novo Cliente");
+		this.pessoaFisica =  new PessoaFisica();
+	}
 	
 	
 	

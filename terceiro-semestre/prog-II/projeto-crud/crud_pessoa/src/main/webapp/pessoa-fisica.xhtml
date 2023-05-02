@@ -12,30 +12,59 @@
         	<p:growl id="messages"/>
 	        <p:dialog header="Novo" modal="true" widgetVar="usuarioDialog" responsive="true">   
 	            <p:outputPanel id="usuario-conteudo-dialog">
-	                <p:outputPanel rendered="#{not empty cadastroUsuarioController.usuario}">
-	                   
-	                    <div class="field">
-	                        <p:outputLabel for="nome">Nome</p:outputLabel>
-	                        <p:inputText id="nome" value="#{pessoaFisicaController.pessoaFisica.nome}" required="true" />
-	                    </div>
-	                   
-	                    <div class="field">
-	                        <p:outputLabel for="nomeSocial">E-mail</p:outputLabel>
-	                        <p:inputText id="nomeSocial"  value="#{pessoaFisicaController.pessoaFisica.nomeSocial}" required="true"/>
-	                    </div>
-	                   
-	                   
-	                    <div class="field">
-                        <p:outputLabel for="permissao">Permissão</p:outputLabel>
-                        <p:selectCheckboxMenu id="permissao" value="#{cadastroUsuarioController.permissoesSelecionadas}" label="Selecione uma permissão">
-                            <f:selectItems value="#{cadastroUsuarioController.permissoes}"/>
-                        </p:selectCheckboxMenu>
-                    </div>
-	                </p:outputPanel>
+	                <p:outputPanel rendered="#{not empty pessoaFisicaController.pessoaFisica}">
+
+						<div class="field">
+							<p:outputLabel for="nome">Nome</p:outputLabel>
+							<p:inputText id="nome"
+								value="#{pessoaFisicaController.pessoaFisica.nome}"
+								required="true" />
+						</div>
+
+						<div class="field">
+							<p:outputLabel for="nomeSocial">E-mail</p:outputLabel>
+							<p:inputText id="nomeSocial"
+								value="#{pessoaFisicaController.pessoaFisica.nomeSocial}"
+								required="true" />
+						</div>
+
+						<div class="field">
+							<p:outputLabel for="cpf">CPF</p:outputLabel>
+							<p:inputText id="cpf"
+								value="#{pessoaFisicaController.pessoaFisica.cpf}"
+								required="true" />
+						</div>
+						<div class="field">
+							<p:outputLabel for="email">E-mail</p:outputLabel>
+							<p:inputText id="email"
+								value="#{pessoaFisicaController.pessoaFisica.email}"
+								required="true" />
+						</div>
+						<div class="field">
+							<p:outputLabel for="telefone">Telefone</p:outputLabel>
+							<p:inputText id="telefone"
+								value="#{pessoaFisicaController.pessoaFisica.telefone}"
+								required="true" />
+						</div>
+						<div class="field">
+							<p:outputLabel for="massa">Massa</p:outputLabel>
+							<p:inputText id="massa"
+								value="#{pessoaFisicaController.pessoaFisica.massa}"
+								required="true" />
+						</div>
+						<div class="field">
+							<p:outputLabel for="altura">Altura</p:outputLabel>
+							<p:inputText id="altura"
+								value="#{pessoaFisicaController.pessoaFisica.altura}"
+								required="true" />
+						</div>
+
+
+					</p:outputPanel>
 	            </p:outputPanel>
 	
 	            <f:facet name="footer">
-	                <p:commandButton value="Salvar" icon="pi pi-check" actionListener="#{cadastroUsuarioController.salvar}"
+	                <p:commandButton value="Salvar" icon="pi pi-check" actionListener="#{pessoaFisicaController.salvar}"
 	                    update="usuario-conteudo-dialog dialogs:messages" process="usuario-conteudo-dialog @this" />
 	                <p:commandButton value="Cancelar" icon="pi pi-times" onclick="PF('usuarioDialog').hide()" class="ui-button-secondary" type="button" />
 	            </f:facet>
@@ -43,7 +72,7 @@
 
 	        <p:confirmDialog widgetVar="removerUsuarioDialog" showEffect="fade" width="300"
 	            message="Desejar remover este usuário?" header="Confirm" severity="warn">
-	            <p:commandButton value="Sim" icon="pi pi-check" actionListener="#{cadastroUsuarioController.remover}"
+	            <p:commandButton value="Sim" icon="pi pi-check" actionListener="#{PessoaFisicaController.remover}"
 	                process="@this" oncomplete="PF('removerUsuarioDialog').hide()" />
 	            <p:commandButton value="Não" type="button" styleClass="ui-button-secondary" icon="pi pi-times" onclick="PF('removerUsuarioDialog').hide()" />
 	        </p:confirmDialog>
@@ -56,7 +85,7 @@
             
             <p:toolbar>
 	            <p:toolbarGroup>
-	                <p:commandButton value="Novo" icon="pi pi-plus" actionListener="#{cadastroUsuarioController.novoCadastro}"
+	                <p:commandButton value="Novo" icon="pi pi-plus" actionListener="#{pessoaFisicaController.novoCadastro}"
 	                    update=":dialogs:usuario-conteudo-dialog" oncomplete="PF('usuarioDialog').show()"
 	                    styleClass="ui-button-success" style="margin-right: .5rem">
 	                    <p:resetInput target=":dialogs:usuario-conteudo-dialog" />
