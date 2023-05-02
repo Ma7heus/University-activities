@@ -1,5 +1,6 @@
 package br.com.uffs.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -13,8 +14,10 @@ import javax.persistence.PersistenceContext;
  */
 
 @Stateless
-public abstract class GenericDAO<T,ID> {
+public abstract class GenericDAO<T,ID> implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@PersistenceContext
 	EntityManager entityManager;
 	

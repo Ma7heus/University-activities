@@ -10,22 +10,21 @@
     <ui:define name="content">
         <h:form id="dialogs">
         	<p:growl id="messages"/>
-	        <p:dialog header="Novo Usuário" showEffect="fade" modal="true" widgetVar="usuarioDialog" responsive="true">   
-	            <p:outputPanel id="usuario-conteudo-dialog" class="ui-fluid">
+	        <p:dialog header="Novo" modal="true" widgetVar="usuarioDialog" responsive="true">   
+	            <p:outputPanel id="usuario-conteudo-dialog">
 	                <p:outputPanel rendered="#{not empty cadastroUsuarioController.usuario}">
+	                   
 	                    <div class="field">
-	                        <p:outputLabel for="nome">Usuário</p:outputLabel>
-	                        <p:inputText id="nome" value="#{cadastroUsuarioController.usuario.usuario}" required="true" />
+	                        <p:outputLabel for="nome">Nome</p:outputLabel>
+	                        <p:inputText id="nome" value="#{pessoaFisicaController.pessoaFisica.nome}" required="true" />
 	                    </div>
+	                   
 	                    <div class="field">
-	                        <p:outputLabel for="email">E-mail</p:outputLabel>
-	                        <p:inputText id="email" value="#{cadastroUsuarioController.usuario.email}" required="true"/>
+	                        <p:outputLabel for="nomeSocial">E-mail</p:outputLabel>
+	                        <p:inputText id="nomeSocial"  value="#{pessoaFisicaController.pessoaFisica.nomeSocial}" required="true"/>
 	                    </div>
-	                    <div class="field">
-	                        <p:outputLabel for="senha">Senha</p:outputLabel>
-	                        <p:password id="senha" value="#{cadastroUsuarioController.usuario.senha}" toggleMask="true" redisplay="true"
-	                        feedback="true" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte" validatorMessage="Informe a senha"/>
-	                    </div>
+	                   
+	                   
 	                    <div class="field">
                         <p:outputLabel for="permissao">Permissão</p:outputLabel>
                         <p:selectCheckboxMenu id="permissao" value="#{cadastroUsuarioController.permissoesSelecionadas}" label="Selecione uma permissão">
@@ -65,39 +64,50 @@
 	            </p:toolbarGroup>
 	        </p:toolbar>
 	
-	        <p:dataTable id="dt-usuarios" widgetVar="dtUsuarios" var="us" value="#{cadastroUsuarioController.listaUsuarios}">
+	        <p:dataTable id="dt-usuarios" var="pf" value="#{pessoaFisicaController.pessoaFisicaList}">
 	            <f:facet name="header">
 	                <div>
-	                    <span style="font-weight: bold">Usuários</span>
+	                    <span style="font-weight: bold">Clientes</span>
 	                </div>
 	            </f:facet>
-	
-	            <p:column headerText="Usuário" sortBy="#{us.usuario}">
-	                <h:outputText value="#{us.usuario}" />
+	            
+	            <p:column headerText="Nome">
+	                <h:outputText value="#{pf.nome}" />
 	            </p:column>
+	            
+	            <p:column headerText="Nome Social">
+	                <h:outputText value="#{pf.nomeSocial}" />
+	            </p:column>
+	            
+	            <p:column headerText="Idade">
+	                <h:outputText value="#{pf.idade}" />
+	            </p:column>
+	            
+	           <p:column headerText="CPF">
+	                <h:outputText value="#{us.email}" />
+	            </p:column>
+	            
+	            <p:column headerText="Genero">
+	                <h:outputText value="#{us.email}" />
+	            </p:column>
+	            
+	            <p:column headerText="Massa">
+	                <h:outputText value="#{us.email}" />
+	            </p:column>
+	            
+				<p:column headerText="Altura">
+	                <h:outputText value="#{us.email}" />
+	            </p:column>
+	            
 	            <p:column headerText="E-mail">
 	                <h:outputText value="#{us.email}" />
 	            </p:column>
-
-	            <p:column>
-	            	<!-- Cuidado com botões que usam AJAX -->
-	            	<!-- process indica qual elemento do formulário será processado (padrão é todo o formulário), @this é só o próprio elemento -->
-	            	<!-- update informa qual elemento será atualizado (renderizado novamente) ao finalizar ação -->
-	            	<!-- é possível disparar ações para diversos eventos Javascript, deve-se cuidar a ordem da resolução dos mesmos -->
-	            	<!-- como regra geral a prioridade de processamento é a seguinte (eventos on... - oncomplete, onclick, onblur, actionListener, action, oncomplete no final) -->
-	            	<!-- PF é usado para chamada de função Javascript de algum elemento do Primefaces -->
-	                <p:commandButton icon="pi pi-pencil" update=":dialogs:usuario-conteudo-dialog" 
-	                    oncomplete="PF('usuarioDialog').show()" action="#{cadastroUsuarioController.alterar}"
-	                    styleClass="edit-button rounded-button ui-button-success" process="@this">
-	                    <f:setPropertyActionListener value="#{us}" target="#{cadastroUsuarioController.usuario}" />
-	                    <p:resetInput target=":dialogs:usuario-conteudo-dialog" />
-	                </p:commandButton>
-	                <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash"
-	                                 process="@this" oncomplete="PF('removerUsuarioDialog').show()">
-	                    <f:setPropertyActionListener value="#{us}" target="#{cadastroUsuarioController.usuario}" />
-	                </p:commandButton>
+	            
+	            <p:column headerText="Telefone">
+	                <h:outputText value="#{us.email}" />
 	            </p:column>
 	
+
 	        </p:dataTable>
 	    </h:form>
     
