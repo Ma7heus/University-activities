@@ -35,15 +35,25 @@ public class PessoaFisicaController implements Serializable {
 		pf.setIdade(22L);
 		pessoaFisicaList.add(pf);
 		
+		//pessoaFisicaList = pessoaFisicaDAO.buscarTodos();
 		
 	}
 	
 	public void salvar() {
-		System.out.println("Cliente salvo");
+		pessoaFisicaDAO.cadastrar(this.pessoaFisica);
+		System.out.println("Cliente salvo nome: " + pessoaFisica.getNome());
+		//this.pessoaFisica = new PessoaFisica();
 	}
 	
-	public void remover() {
+	public void remover(PessoaFisica cliente) {
 		System.out.println("Remover");
+		pessoaFisicaDAO.deletar(cliente.getIdPessoaFisica());
+	}
+	
+	public void atualizar(PessoaFisica cliente) {
+		cliente.setNome("Matheus");
+		this.pessoaFisica = cliente;
+		//pessoaFisicaDAO.atualizar(cliente);
 	}
 	
 	public void novoCadastro() {

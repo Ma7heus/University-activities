@@ -18,13 +18,13 @@ public abstract class GenericDAO<T,ID> implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	@PersistenceContext
 	EntityManager entityManager;
 	
 	public Class<T> clazz;
 	
 	public GenericDAO(Class<T> clazz) {
 		this.clazz = clazz;
+		this.entityManager = EntityManagerBuil.getEntityManager();
 	}
 	
 	public void cadastrar(T entidade) {

@@ -10,52 +10,83 @@
     <ui:define name="content">
         <h:form id="dialogs">
         	<p:growl id="messages"/>
-	        <p:dialog header="Novo" modal="true" widgetVar="usuarioDialog" responsive="true">   
-	            <p:outputPanel id="usuario-conteudo-dialog">
+	        <p:dialog header="Novo cliente" modal="true"  width="750" height="400"    widgetVar="usuarioDialog" responsive="true">   
+	           
+	            <p:outputPanel id="usuario-conteudo-dialog" class="ui-fluid">
 	                <p:outputPanel rendered="#{not empty pessoaFisicaController.pessoaFisica}">
 
-						<div class="field">
-							<p:outputLabel for="nome">Nome</p:outputLabel>
-							<p:inputText id="nome"
-								value="#{pessoaFisicaController.pessoaFisica.nome}"
-								required="true" />
+						<div class="ui-g">
+							<div class="ui-md-6">
+								<p:outputLabel for="nome">Nome</p:outputLabel>
+								<p:inputText id="nome"
+									value="#{pessoaFisicaController.pessoaFisica.nome}"
+									required="true" />
+							</div>
+							<div class="ui-md-6">
+								<p:outputLabel for="nomeSocial">Nome Social</p:outputLabel>
+								<p:inputText id="nomeSocial"
+									value="#{pessoaFisicaController.pessoaFisica.nomeSocial}"
+									required="true" />
+							</div>
 						</div>
-
-						<div class="field">
-							<p:outputLabel for="nomeSocial">E-mail</p:outputLabel>
-							<p:inputText id="nomeSocial"
-								value="#{pessoaFisicaController.pessoaFisica.nomeSocial}"
-								required="true" />
-						</div>
-
-						<div class="field">
-							<p:outputLabel for="cpf">CPF</p:outputLabel>
-							<p:inputText id="cpf"
-								value="#{pessoaFisicaController.pessoaFisica.cpf}"
-								required="true" />
-						</div>
-						<div class="field">
+						
+						<div class="ui-md-12">
 							<p:outputLabel for="email">E-mail</p:outputLabel>
 							<p:inputText id="email"
+								value="#{pessoaFisicaController.pessoaFisica.email}" 
+								required="true" />
+						</div>
+						
+						<div class="ui-g">
+							<div class="ui-md-6">
+								<p:outputLabel for="cpf">CPF</p:outputLabel>
+								<p:inputMask  id="cpf"
+									value="#{pessoaFisicaController.pessoaFisica.cpf}" mask="999.999.999-99"
+									required="true" />
+							</div>
+							<div class="ui-md-6">
+								<p:outputLabel for="telefone">Telefone</p:outputLabel>
+								<p:inputMask  id="telefone" 
+									value="#{pessoaFisicaController.pessoaFisica.telefone}" mask="(99) 99999-9999"
+									required="true" />
+							</div>
+						</div>
+
+						<div class="ui-g">
+							<div class="ui-md-3">
+								<p:outputLabel for="massa">Massa (Kg)</p:outputLabel>
+								<p:inputText id="massa"
+									value="#{pessoaFisicaController.pessoaFisica.massa}" 
+									required="true" />
+							</div>
+							<div class="ui-md-3">
+								<p:outputLabel for="altura">Altura (cm)</p:outputLabel>
+								<p:inputText id="altura"
+									value="#{pessoaFisicaController.pessoaFisica.altura}"  mask="999"
+									required="true" />
+							</div>
+
+							<div class="ui-md-3">
+								<p:outputLabel for="idade">Idade</p:outputLabel>
+								<p:inputText id="idade"
+									value="#{pessoaFisicaController.pessoaFisica.altura}"
+									required="true" />
+							</div>
+
+							<div class="ui-md-3">
+								<p:outputLabel for="genero">Genero</p:outputLabel>
+								<p:inputText id="genero"
+									value="#{pessoaFisicaController.pessoaFisica.altura}"
+									required="true" />
+
+							</div>
+						</div>
+
+
+						<div class="ui-md-12">
+							<p:outputLabel for="endereco">Endereco</p:outputLabel>
+							<p:inputText id="endereco"
 								value="#{pessoaFisicaController.pessoaFisica.email}"
-								required="true" />
-						</div>
-						<div class="field">
-							<p:outputLabel for="telefone">Telefone</p:outputLabel>
-							<p:inputText id="telefone"
-								value="#{pessoaFisicaController.pessoaFisica.telefone}"
-								required="true" />
-						</div>
-						<div class="field">
-							<p:outputLabel for="massa">Massa</p:outputLabel>
-							<p:inputText id="massa"
-								value="#{pessoaFisicaController.pessoaFisica.massa}"
-								required="true" />
-						</div>
-						<div class="field">
-							<p:outputLabel for="altura">Altura</p:outputLabel>
-							<p:inputText id="altura"
-								value="#{pessoaFisicaController.pessoaFisica.altura}"
 								required="true" />
 						</div>
 
@@ -135,6 +166,37 @@
 	            <p:column headerText="Telefone">
 	                <h:outputText value="#{us.email}" />
 	            </p:column>
+	            
+	            <p:column>
+						<f:facet name="header">Opções</f:facet>
+						
+						
+						<p:commandButton id="AtualisarCliente" icon="pi pi-pencil"
+							oncomplete="PF('usuarioDialog').show()"
+							actionListener="#{pessoaFisicaController.atualizar(cliente)}"
+							process="@this" 
+												
+							/>
+
+						<p:commandButton id="removerCliente"
+							class="ui-button-warning rounded-button" icon="pi pi-trash"
+							action="#{pessoaFisicaController.remover(cliente)}"
+							process="@this" update="@form">
+							<p:confirm header="Confirmação" message="Excluir Cliente?"
+								icon="pi pi-exclamation-triangle" />
+						</p:commandButton>
+
+						<p:confirmDialog hideEffect="fade" global="true" showEffect="fade"
+							width="300" message="Excluir Cliente?" header="Confirm"
+							severity="warn">
+
+							<p:commandButton value="Yes" type="button" icon="pi pi-check"
+								styleClass="ui-confirmdialog-yes" />
+
+							<p:commandButton value="No" type="button" icon="pi pi-times"
+								styleClass="ui-confirmdialog-no ui-button-flat" />
+						</p:confirmDialog>
+					</p:column>
 	
 
 	        </p:dataTable>

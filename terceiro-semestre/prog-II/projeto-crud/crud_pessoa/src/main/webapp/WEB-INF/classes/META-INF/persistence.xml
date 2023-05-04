@@ -6,6 +6,8 @@
 
 
    <persistence-unit name="PostgresDS" transaction-type="JTA">
+   
+   <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <jta-data-source>java:/PostgresDS</jta-data-source>
         
