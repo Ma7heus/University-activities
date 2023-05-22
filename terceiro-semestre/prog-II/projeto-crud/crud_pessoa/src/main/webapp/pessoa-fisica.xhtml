@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    template="/WEB-INF/templates/default.xhtml">
+    
+    <ui:define name="content">
+        <h:form id="dialogs">
+        	<p:growl id="messages"/>
+	        <p:dialog header="Novo cliente" modal="true"  width="750" height="400"    widgetVar="usuarioDialog" responsive="true">   
+	           
+	            <p:outputPanel id="usuario-conteudo-dialog" class="ui-fluid">
+	                <p:outputPanel rendered="#{not empty pessoaFisicaController.pessoaFisica}">
+
+						<div class="ui-g">
+							<div class="ui-md-6">
+								<p:outputLabel for="nome">Nome</p:outputLabel>
+								<p:inputText id="nome"
+									value="#{pessoaFisicaController.pessoaFisica.nome}"
+									required="true" />
+							</div>
+							<div class="ui-md-6">
+								<p:outputLabel for="nomeSocial">Nome Social</p:outputLabel>
+								<p:inputText id="nomeSocial"
+									value="#{pessoaFisicaController.pessoaFisica.nomeSocial}"
+									required="true" />
+							</div>
+						</div>
+						
+						<div class="ui-md-12">
+							<p:outputLabel for="email">E-mail</p:outputLabel>
+							<p:inputText id="email"
+								value="#{pessoaFisicaController.pessoaFisica.email}" 
+								required="true" />
+						</div>
+						
+						<div class="ui-g">
+							<div class="ui-md-6">
+								<p:outputLabel for="cpf">CPF</p:outputLabel>
+								<p:inputMask  id="cpf"
+									value="#{pessoaFisicaController.pessoaFisica.cpf}" mask="999.999.999-99"
+									required="true" />
+							</div>
+							<div class="ui-md-6">
+								<p:outputLabel for="telefone">Telefone</p:outputLabel>
+								<p:inputMask  id="telefone" 
+									value="#{pessoaFisicaController.pessoaFisica.telefone}" mask="(99) 99999-9999"
+									required="true" />
+							</div>
+						</div>
+
+						<div class="ui-g">
+							<div class="ui-md-3">
+								<p:outputLabel for="massa">Massa (Kg)</p:outputLabel>
+								<p:inputText id="massa"
+									value="#{pessoaFisicaController.pessoaFisica.massa}" 
+									required="true" />
+							</div>
+							<div class="ui-md-3">
+								<p:outputLabel for="altura">Altura (cm)</p:outputLabel>
+								<p:inputText id="altura"
+									value="#{pessoaFisicaController.pessoaFisica.altura}"  mask="999"
+									required="true" />
+							</div>
+
+							<div class="ui-md-3">
+								<p:outputLabel for="idade">Idade</p:outputLabel>
+								<p:inputText id="idade"
+									value="#{pessoaFisicaController.pessoaFisica.altura}"
+									required="true" />
+							</div>
+
+							<div class="ui-md-3">
+								<p:outputLabel for="genero">Genero</p:outputLabel>
+								<p:inputText id="genero"
+									value="#{pessoaFisicaController.pessoaFisica.altura}"
+									required="true" />
+
+							</div>
+						</div>
+
+
+						<div class="ui-md-12">
+							<p:outputLabel for="endereco">Endereco</p:outputLabel>
+							<p:inputText id="endereco"
+								value="#{pessoaFisicaController.pessoaFisica.email}"
+								required="true" />
+						</div>
+
+
+					</p:outputPanel>
+	            </p:outputPanel>
+	
+	            <f:facet name="footer">
+	                <p:commandButton value="Salvar" icon="pi pi-check" actionListener="#{pessoaFisicaController.salvar}"
+	                    update="usuario-conteudo-dialog dialogs:messages" process="usuario-conteudo-dialog @this" />
+	                <p:commandButton value="Cancelar" icon="pi pi-times" onclick="PF('usuarioDialog').hide()" class="ui-button-secondary" type="button" />
+	            </f:facet>
+	        </p:dialog>
+
+	        <p:confirmDialog widgetVar="removerUsuarioDialog" showEffect="fade" width="300"
+	            message="Desejar remover este usuário?" header="Confirm" severity="warn">
+	            <p:commandButton value="Sim" icon="pi pi-check" actionListener="#{PessoaFisicaController.remover}"
+	                process="@this" oncomplete="PF('removerUsuarioDialog').hide()" />
+	            <p:commandButton value="Não" type="button" styleClass="ui-button-secondary" icon="pi pi-times" onclick="PF('removerUsuarioDialog').hide()" />
+	        </p:confirmDialog>
+		
+        </h:form>     
+        
+        <!-- Define formulário principal -->  
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true" />
+            
+            <p:toolbar>
+	            <p:toolbarGroup>
+	                <p:commandButton value="Novo" icon="pi pi-plus" actionListener="#{pessoaFisicaController.novoCadastro}"
+	                    update=":dialogs:usuario-conteudo-dialog" oncomplete="PF('usuarioDialog').show()"
+	                    styleClass="ui-button-success" style="margin-right: .5rem">
+	                    <p:resetInput target=":dialogs:usuario-conteudo-dialog" />
+	                </p:commandButton>
+	            </p:toolbarGroup>
+	        </p:toolbar>
+	
+	        <p:dataTable id="dt-usuarios" var="pf" value="#{pessoaFisicaController.pessoaFisicaList}">
+	            <f:facet name="header">
+	                <div>
+	                    <span style="font-weight: bold">Clientes</span>
+	                </div>
+	            </f:facet>
+	            
+	            <p:column headerText="Nome">
+	                <h:outputText value="#{pf.nome}" />
+	            </p:column>
+	            
+	            <p:column headerText="Nome Social">
+	                <h:outputText value="#{pf.nomeSocial}" />
+	            </p:column>
+	            
+	            <p:column headerText="Idade">
+	                <h:outputText value="#{pf.idade}" />
+	            </p:column>
+	            
+	           <p:column headerText="CPF">
+	                <h:outputText value="#{us.email}" />
+	            </p:column>
+	            
+	            <p:column headerText="Genero">
+	                <h:outputText value="#{us.email}" />
+	            </p:column>
+	            
+	            <p:column headerText="Massa">
+	                <h:outputText value="#{us.email}" />
+	            </p:column>
+	            
+				<p:column headerText="Altura">
+	                <h:outputText value="#{us.email}" />
+	            </p:column>
+	            
+	            <p:column headerText="E-mail">
+	                <h:outputText value="#{us.email}" />
+	            </p:column>
+	            
+	            <p:column headerText="Telefone">
+	                <h:outputText value="#{us.email}" />
+	            </p:column>
+	            
+	            <p:column>
+						<f:facet name="header">Opções</f:facet>
+						
+						
+						<p:commandButton id="AtualisarCliente" icon="pi pi-pencil"
+							oncomplete="PF('usuarioDialog').show()"
+							actionListener="#{pessoaFisicaController.atualizar(cliente)}"
+							process="@this" 
+												
+							/>
+
+						<p:commandButton id="removerCliente"
+							class="ui-button-warning rounded-button" icon="pi pi-trash"
+							action="#{pessoaFisicaController.remover(cliente)}"
+							process="@this" update="@form">
+							<p:confirm header="Confirmação" message="Excluir Cliente?"
+								icon="pi pi-exclamation-triangle" />
+						</p:commandButton>
+
+						<p:confirmDialog hideEffect="fade" global="true" showEffect="fade"
+							width="300" message="Excluir Cliente?" header="Confirm"
+							severity="warn">
+
+							<p:commandButton value="Yes" type="button" icon="pi pi-check"
+								styleClass="ui-confirmdialog-yes" />
+
+							<p:commandButton value="No" type="button" icon="pi pi-times"
+								styleClass="ui-confirmdialog-no ui-button-flat" />
+						</p:confirmDialog>
+					</p:column>
+	
+
+	        </p:dataTable>
+	    </h:form>
+    
+    </ui:define>
+</ui:composition>
