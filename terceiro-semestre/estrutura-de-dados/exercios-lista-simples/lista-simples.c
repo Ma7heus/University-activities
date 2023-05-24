@@ -102,6 +102,7 @@ void insereNoFinal(Item *head, Item *novo) {
 int removeItem(Item *itemAnterior){
     Item *itemParaRemover = itemAnterior->next;
     itemAnterior->next = itemParaRemover->next;
+    return 1;
 }
 
 int removeDaLista(Item *head, int posicao){
@@ -115,11 +116,13 @@ int removeDaLista(Item *head, int posicao){
         }
     }
     temp->next = ItemPosicao->next;
+    return 1;
 }
 
 int removeDoInicio(Item *head){
     Item *primeiro = head->next;
     head->next = primeiro->next;
+    return 1;
 }
 
 int removeDoFinal(Item *head) {
@@ -134,6 +137,7 @@ int removeDoFinal(Item *head) {
         }
         temp = temp->next;
     }
+    return 1;
 }
 
 
