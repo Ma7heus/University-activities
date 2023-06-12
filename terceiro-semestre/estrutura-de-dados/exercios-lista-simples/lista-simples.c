@@ -65,12 +65,84 @@ void imprimeLista(Item *head) {
 }
 
 void insereItem(Item *itemAnterior, Item *novo){
+<<<<<<< HEAD
     Item *novo = (Item *)malloc(sizeof(Item));
     
+=======
+    novo->next = itemAnterior->next;
+}
+>>>>>>> c76eee7f664938fbd34d563c23287bce4e8191fb
 
+void insereNaLista(Item *head, Item *novo, int posicao){
+    Item *temp = head;
+    Item *ItemPosicao = NULL;
+    int cont = 0;
+    while(temp->next != NULL) {
+        cont ++;
+        if(cont == posicao){
+            ItemPosicao = temp->next;
+        }
+    }
+    novo->next = ItemPosicao;
+    temp->next = novo;
 }
 
+void insereNoInicio(Item *head, Item *novo) {
+    novo->next = head->next;
+    head->next = novo;
+}
 
+void insereNoFinal(Item *head, Item *novo) {
+    Item *ultimoItem = NULL;
+    Item *temp = head;
+    while(temp->next != NULL){
+       Item *item = temp->next;
+        if(item->next == NULL){
+            item->next = novo;
+        }
+        temp = temp->next;
+    }
+}
 
+int removeItem(Item *itemAnterior){
+    Item *itemParaRemover = itemAnterior->next;
+    itemAnterior->next = itemParaRemover->next;
+    return 1;
+}
+
+int removeDaLista(Item *head, int posicao){
+    Item *temp = head;
+    Item *ItemPosicao = NULL;
+    int cont = 0;
+    while(temp->next != NULL) {
+        cont ++;
+        if(cont == posicao){
+            ItemPosicao = temp->next;
+        }
+    }
+    temp->next = ItemPosicao->next;
+    return 1;
+}
+
+int removeDoInicio(Item *head){
+    Item *primeiro = head->next;
+    head->next = primeiro->next;
+    return 1;
+}
+
+int removeDoFinal(Item *head) {
+    Item *ultimoItem = NULL;
+    Item *temp = head;
+     
+    while(temp->next != NULL) {
+       Item *item = temp->next;
+        if(item->next == NULL){
+            temp->next = NULL;
+            break;
+        }
+        temp = temp->next;
+    }
+    return 1;
+}
 
 
