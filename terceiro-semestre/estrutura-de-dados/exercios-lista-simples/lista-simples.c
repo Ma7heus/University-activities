@@ -64,7 +64,7 @@ void imprimeLista(Item *head) {
     }
 }
 
-void insereItem(int id){
+void insereItem(Item *itemAnterior, Item *novo){
     Item *novo = (Item *)malloc(sizeof(Item));
     
 
