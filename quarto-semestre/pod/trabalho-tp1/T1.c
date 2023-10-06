@@ -129,12 +129,13 @@ void quickSort(int *A, int baixo, int alto, long int *contador)
 int main()
 {
     int contadorExecusoes = 0;
-    while (contadorExecusoes < 3) {
-        contadorExecusoes ++;
+    while (contadorExecusoes < 3)
+    {
+        contadorExecusoes++;
         printf("\n====Execucao numero %d====\n", contadorExecusoes);
 
         srand(time(NULL));
-        int n = 50000; // tamanho do vetor
+        int n = 1000000; // tamanho do vetor
         int *vet = (int *)malloc(n * sizeof(int));
 
         if (vet == NULL)
@@ -153,11 +154,11 @@ int main()
         // // bubble sort
         // int *bubbleVec = (int *)malloc(n * sizeof(int));
         // copia(vet, bubbleVec, n);
-        clock_t begin;// = clock();
+        clock_t begin; // = clock();
         // bubbleSort(bubbleVec, n);
-        clock_t end;// = clock();
+        clock_t end; // = clock();
 
-        double time_spent;// = (double)(end - begin) / CLOCKS_PER_SEC;
+        double time_spent; // = (double)(end - begin) / CLOCKS_PER_SEC;
         // printf("Bubble executou em: %f segundos.\n", time_spent);
 
         // selection sort -----------------------------

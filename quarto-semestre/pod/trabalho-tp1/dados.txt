@@ -1,0 +1,82 @@
+*****************RODANDO COM 50.000**********************
+
+QUICK SORT:
+====Execucao numero 1====
+
+Vetor tamanho = 50000
+
+ Trocas no quick: 625024999
+Quick executou em: 3.663034 segundos.
+
+====Execucao numero 2====
+
+Vetor tamanho = 50000
+
+ Trocas no quick: 625024999
+Quick executou em: 3.648360 segundos.
+
+====Execucao numero 3====
+
+Vetor tamanho = 50000
+
+ Trocas no quick: 625024999
+Quick executou em: 3.703333 segundos.
+
+********************RODANDO COM 100.000***********************
+
+ -----------QUICK SORT-----------------
+ ====Execucao numero 1====
+
+Vetor tamanho = 100000
+
+ Trocas no quick: 2500049999
+Quick executou em: 14.704350 segundos.
+
+====Execucao numero 2====
+
+Vetor tamanho = 100000
+
+ Trocas no quick: 2500049999
+Quick executou em: 14.496468 segundos.
+
+====Execucao numero 3====
+
+Vetor tamanho = 100000
+
+ Trocas no quick: 2500049999
+Quick executou em: 14.526654 segundos.
+
+--------BUBBLE SORT ---------
+
+====Execucao numero 1====
+
+Vetor tamanho = 100000
+
+ Trocas no bubble: 4999950000
+Bubble executou em: 22.615686 segundos.
+
+====Execucao numero 2====
+
+Vetor tamanho = 100000
+
+ Trocas no bubble: 4999950000
+Bubble executou em: 22.617375 segundos.
+
+====Execucao numero 3====
+
+Vetor tamanho = 100000
+
+ Trocas no bubble: 4999950000
+Bubble executou em: 22.596821 segundos.
+
+
+
+
+
+
+
+******************RODANDO COM 1.000.000***********************
+
+--------BUBBLE SORT ---------
+
+
