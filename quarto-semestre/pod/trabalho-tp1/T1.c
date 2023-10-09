@@ -58,15 +58,15 @@ void selectionSort(int *A, int size)
     long int contador = 0;
     for (int i = 0; i < size - 1; i++)
     {
-        min = i; // guarda o valor de i em min para testar no próximo loop se é o menor
+        min = i;
         for (int j = i + 1; j < size; j++)
         {
             if (A[j] < A[min])
-            {            // o valor da array que esta sendo acessado neste momento é o menor até agora?
-                min = j; // se sim atualiza o valor da variável min
+            {
+                min = j;
             }
             if (i != min)
-            { // se não for atualiza a array trocando os valores de lugar com um auxiliar
+            {
                 aux = A[i];
                 A[i] = A[min];
                 A[min] = aux;
@@ -82,7 +82,7 @@ void insertionSort(int *A, int size)
     long int contador = 0;
     int aux, j;
     for (int i = 1; i < size; i++)
-    { // inclui inicialmente o primeiro elemento começando com array[1]
+    {
         aux = A[i];
 
         for (j = i - 1; j >= 0 && A[j] > aux; j--)
@@ -135,7 +135,7 @@ int main()
         printf("\n====Execucao numero %d====\n", contadorExecusoes);
 
         srand(time(NULL));
-        int n = 1000000; // tamanho do vetor
+        int n = 10000; // tamanho do vetor
         int *vet = (int *)malloc(n * sizeof(int));
 
         if (vet == NULL)
@@ -151,36 +151,36 @@ int main()
 
         printf("\nVetor tamanho = %d\n", n);
 
-        // // bubble sort
-        // int *bubbleVec = (int *)malloc(n * sizeof(int));
-        // copia(vet, bubbleVec, n);
-        clock_t begin; // = clock();
-        // bubbleSort(bubbleVec, n);
-        clock_t end; // = clock();
+        // bubble sort
+        int *bubbleVec = (int *)malloc(n * sizeof(int));
+        copia(vet, bubbleVec, n);
+        clock_t begin = clock();
+        bubbleSort(bubbleVec, n);
+        clock_t end = clock();
 
-        double time_spent; // = (double)(end - begin) / CLOCKS_PER_SEC;
-        // printf("Bubble executou em: %f segundos.\n", time_spent);
+        double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+        printf("Bubble executou em: %f segundos.\n", time_spent);
 
         // selection sort -----------------------------
 
-        // int *selectionVec = (int *)malloc(n * sizeof(int));
-        // copia(vet, selectionVec, n);
-        // begin = clock();
-        // selectionSort(selectionVec, n);
-        // end = clock();
+        int *selectionVec = (int *)malloc(n * sizeof(int));
+        copia(vet, selectionVec, n);
+        begin = clock();
+        selectionSort(selectionVec, n);
+        end = clock();
 
-        // time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-        // printf("Selection executou em: %f segundos.\n", time_spent);
+        time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+        printf("Selection executou em: %f segundos.\n", time_spent);
 
         // insertion sort ------------------------------
 
-        // int *insertionVec = (int *)malloc(n * sizeof(int));
-        // copia(vet, insertionVec, n);
-        // begin = clock();
-        // insertionSort(insertionVec, n);
-        // end = clock();
-        // time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-        // printf("Insertion executou em: %f segundos.\n  ", time_spent);
+        int *insertionVec = (int *)malloc(n * sizeof(int));
+        copia(vet, insertionVec, n);
+        begin = clock();
+        insertionSort(insertionVec, n);
+        end = clock();
+        time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+        printf("Insertion executou em: %f segundos.\n  ", time_spent);
 
         // quickSort ---------------------------------------
 
@@ -195,9 +195,9 @@ int main()
         printf("Quick executou em: %f segundos.\n", time_spent);
 
         free(vet);
-        // free(bubbleVec);
-        // free(selectionVec);
-        // free(insertionVec);
+        free(bubbleVec);
+        free(selectionVec);
+        free(insertionVec);
         free(quickVec);
     }
 
