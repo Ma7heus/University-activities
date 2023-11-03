@@ -1,8 +1,8 @@
 {
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#2A301A",
-        "titleBar.activeBackground": "#3B4325",
-        "titleBar.activeForeground": "#FBFBF8"
-    },
-    "cmake.sourceDirectory": "/workspaces/University-activities/terceiro-semestre/estrutura_de_dados/lista_exercicios_1"
+    "cmake.sourceDirectory": "/workspaces/University-activities/terceiro-semestre/estrutura_de_dados/lista_exercicios_1",
+    "files.associations": {
+        "concepts": "c",
+        "type_traits": "c",
+        "stdio.h": "c"
+    }
 }
