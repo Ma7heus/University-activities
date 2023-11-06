@@ -10,9 +10,9 @@ data = pd.read_csv('dados.csv')
 x = data.iloc[:, 1:]
 
 # Crie o modelo usando K-Means e define parâmetros essenciais (número de grupos/clusters)
-modelo_ia_1 = KMeans(n_clusters=3)
+modelo_ia_1 = KMeans(n_clusters=10)
 # Crie o modelo usando HDBScan e define parâmetros essenciais (quantidade mínima de elementos para formar um grupo)
-modelo_ia_2 = HDBSCAN(min_cluster_size=2)
+modelo_ia_2 = HDBSCAN(min_cluster_size=4)
 # Treina o modelo
 modelo_ia_1.fit(x)
 modelo_ia_2.fit(x)
