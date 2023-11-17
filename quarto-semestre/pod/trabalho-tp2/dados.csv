@@ -1,0 +1,13 @@
+Algorithm,Array Size,Swaps,Time (seconds)
+Radix Sort,100,0,0.001
+Radix Sort,1000,0,0.001
+Radix Sort,5000,0,0.001
+Radix Sort,10000,0,0.001
+Radix Sort,50000,0,0.0045
+Radix Sort,100000,0,0.015
+Heap Sort,100,99,0.000
+Heap Sort,1000,999,0.001
+Heap Sort,5000,4999,0.0013
+Heap Sort,10000,9999,0.002
+Heap Sort,50000,49999,0.009
+Heap Sort,100000,99999,0.018
