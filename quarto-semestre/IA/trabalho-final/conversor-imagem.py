@@ -1,89 +1,64 @@
 import cv2
-import pandas as pd
 import numpy as np
 import os
+import csv
 
-def isKValido(k):
-    print("Verificando se o valor de k é válido...")
-    if k <= 0:
-        raise ValueError("O número de clusters deve ser um número inteiro positivo maior que zero.")
+# Função principal
+def __init__(valores_k, caminho_imagem):
+    imagem_original = cv2.imread(caminho_imagem)
+    aplicarKmedia(valores_k, caminho_imagem, imagem_original)
 
-def lerImagens(imagens):
-    print("Lendo imagens...")
-    imagens_lidas = []
-    for imagem in imagens:
-        imagens_lidas.append(cv2.imread(imagem))
-    return imagens_lidas
+# Aplicar o algoritmo k-médias para cada valor de k
+def aplicarKmedia(valores_k, caminho_imagem, imagem_original):
+    dados = ['Valor de k', 'Resolução Original', 'Tamanho original(KB)', 'Quant cores iniciais', 'Resolução Gerada', 'Tamanho novo(KB)', 'Quant cores final']
+    for k in valores_k:
+        print(f'Aplicando k-médias para k = {k}...')
+        # Realizar o agrupamento usando k-médias
+        criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 100, 0.2)
+        _, labels, centroids = cv2.kmeans(imagem_original.reshape((-1, 3)).astype(np.float32), k, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
+        # Reconstruir a imagem a partir dos centroides
+        imagem_reconstruida = centroids[labels.flatten()].reshape(imagem_original.shape).astype(np.uint8)
+        # Calcular as propriedades da imagem original
+        resolucao_original, tamanho_original_kb, cores_unicas_original = calcularPropriedadesImagem(imagem_original, caminho_imagem)
+        # Calcular as propriedades da imagem gerada
+        resolucao_gerada, tamanho_gerado_kb, cores_unicas_geradas = calcularPropriedadesImagem(imagem_reconstruida, caminho_imagem)
+        
+        # Salvar as informações
+        print(f'Para k = {k}:')
+        print(f'Imagem original - Resolução: {resolucao_original} pixels, Tamanho: {tamanho_original_kb} KB, Cores únicas: {cores_unicas_original}')
+        print(f'Imagem gerada - Resolução: {resolucao_gerada} pixels, Tamanho: {tamanho_gerado_kb} KB, Cores únicas: {cores_unicas_geradas}')
+        cv2.imwrite(f'resultado_k{k}.jpg', imagem_reconstruida)
 
-def aplicandoKMediasParaKValores(k_valores, imagens_lidas):
-    print("Aplicando o algoritmo k-médias...")
-    imagens_geradas = []
-
-    for k in k_valores:
-        isKValido(k);
-        centroides = []
-
-        for imagem in imagens_lidas:
-            # Aplica o algoritmo k-médias
-            criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
-            centroides, labels = cv2.kmeans(imagem.reshape(-1, 3), k, criteria, None, cv2.KMEANS_RANDOM_CENTERS, cv2.KMEANS_PP_CENTERS)
-
-            # Constrói a nova imagem a partir dos centroides
-            imagem_gerada = np.full((imagem.shape[0], imagem.shape[1], 3), np.uint8)
-            for i in range(len(labels)):
-                imagem_gerada[i] = centroides[labels[i]]
-
-            # Adiciona a imagem gerada à lista
-            imagens_geradas.append(imagem_gerada)
-
-    return imagens_geradas
-
-
-def main(k_list):
-    print("Iniciando a conversão das imagens...")
-
-    imagens = ["imagens/animaisPNG/coruja.png"]
-    arquivo_saida = "dados.csv"
-    k_valores = k_list
-
+        dados.append([k, resolucao_original, tamanho_original_kb, cores_unicas_original, resolucao_gerada, tamanho_gerado_kb, cores_unicas_geradas])
     
-    # Lista de imagens lidas
-    imagens_lidas = lerImagens(imagens);
-    # Lista de imagens geradas
-    imagens_geradas = aplicandoKMediasParaKValores(k_valores, imagens_lidas)
+    adicionarDadosCsv(nomeArquivo, dados)
 
-    dados_analise = []
-    # Coleta os dados das imagens originais
-    for imagem in imagens_lidas:
-        dados_analise.append([
-            imagem.shape[0],
-            imagem.shape[1],
-            imagem.size / 1024,
-            len(np.unique(imagem.reshape(-1))),
-        ])
+# Função para calcular as propriedades da imagem
+def calcularPropriedadesImagem(imagem, caminho_imagem):
+    # Resolução da imagem em pixels
+    resolucao = imagem.shape[0] * imagem.shape[1]
+    # Tamanho ocupado em memória pela imagem em KB
+    tamanho_memoria_kb = os.path.getsize(caminho_imagem) // 1024  # Tamanho em KB
+    # Contagem de cores únicas na imagem
+    cores_unicas = len(set(map(tuple, imagem.reshape(-1, 3))))
+    return resolucao, tamanho_memoria_kb, cores_unicas
 
-    # Coleta os dados das imagens geradas
-    for imagem in imagens_geradas:
-        dados_analise.append([
-            imagem.shape[0],
-            imagem.shape[1],
-            imagem.size / 1024,
-            len(np.unique(imagem.reshape(-1))),
-        ])
-
-
-    # Salva os dados_analise em um arquivo CSV
-    with open(arquivo_saida, "w") as arquivo:
-        writer = csv.writer(arquivo)
-        writer.writerow(["Resolução", "Tamanho", "Cores únicas"])
-        for linha in dados_analise:
-            writer.writerow(linha)
-
-
-# # Salva os dados_analise em um arquivo CSV
-# dados = pd.DataFrame(dados_analise)
-# dados.to_csv(arquivo_saida,  header=True)
+# Função para adicionar dados no arquivo csv
+def adicionarDadosCsv(nome_arquivo, dados):
+    with open(nome_arquivo, 'a', newline='') as arquivo_csv:
+        writer = csv.writer(arquivo_csv)
+        for dado in dados:
+            writer.writerow(dado)
 
 
 
-__init__ = main(10)
+
+# Definir valores de k
+valores_k = [2, 3, 5, 7, 9, 10, 15]
+
+# Caminho da imagem
+caminho_imagem = 'imagens/animaisPNG/lobo-guara.png'
+nomeArquivo = 'lobo-guara.csv'  
+
+# Executar o algoritmo
+__init__(valores_k, caminho_imagem)
