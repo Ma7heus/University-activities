@@ -10,7 +10,9 @@ def __init__(valores_k, caminho_imagem):
 
 # Aplicar o algoritmo k-médias para cada valor de k
 def aplicarKmedia(valores_k, caminho_imagem, imagem_original):
-    dados = ['Valor de k', 'Resolução Original', 'Tamanho original(KB)', 'Quant cores iniciais', 'Resolução Gerada', 'Tamanho novo(KB)', 'Quant cores final']
+    dados = ['Valor_k', 'Resolução_original', 'Tamanho_original(KB)', 'Quant_cores_iniciais', 'Resolução_Gerada', 'Tamanho_novo(KB)', 'Quant_cores_final']
+    adicionarDadosCsv(nomeArquivo, dados)
+
     for k in valores_k:
         print(f'Aplicando k-médias para k = {k}...')
         # Realizar o agrupamento usando k-médias
@@ -29,9 +31,8 @@ def aplicarKmedia(valores_k, caminho_imagem, imagem_original):
         print(f'Imagem gerada - Resolução: {resolucao_gerada} pixels, Tamanho: {tamanho_gerado_kb} KB, Cores únicas: {cores_unicas_geradas}')
         cv2.imwrite(f'resultado_k{k}.jpg', imagem_reconstruida)
 
-        dados.append([k, resolucao_original, tamanho_original_kb, cores_unicas_original, resolucao_gerada, tamanho_gerado_kb, cores_unicas_geradas])
-    
-    adicionarDadosCsv(nomeArquivo, dados)
+        dados = [k, resolucao_original, tamanho_original_kb, cores_unicas_original, resolucao_gerada, tamanho_gerado_kb, cores_unicas_geradas]
+        adicionarDadosCsv(nomeArquivo, dados)
 
 # Função para calcular as propriedades da imagem
 def calcularPropriedadesImagem(imagem, caminho_imagem):
@@ -47,18 +48,17 @@ def calcularPropriedadesImagem(imagem, caminho_imagem):
 def adicionarDadosCsv(nome_arquivo, dados):
     with open(nome_arquivo, 'a', newline='') as arquivo_csv:
         writer = csv.writer(arquivo_csv)
-        for dado in dados:
-            writer.writerow(dado)
-
+        writer.writerow(dados)
 
 
 
 # Definir valores de k
-valores_k = [2, 3, 5, 7, 9, 10, 15]
+##valores_k = [1, 2, 3, 7, 10, 13, 15]
+valores_k = [1 ,3, 5]
 
 # Caminho da imagem
-caminho_imagem = 'imagens/animaisPNG/lobo-guara.png'
-nomeArquivo = 'lobo-guara.csv'  
+caminho_imagem = 'imagens/animaisPNG/suricates-gordox.png'
+nomeArquivo = 'suricates-gordox.csv'  
 
 # Executar o algoritmo
 __init__(valores_k, caminho_imagem)
