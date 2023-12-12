@@ -5,6 +5,11 @@ import csv
 
 # Função principal
 def __init__(valores_k, caminho_imagem):
+    #verificar variaveis informadas
+    if not valores_k or not caminho_imagem:
+        print("Informe o caminho da imagem que deseja converter e o nome do arquivo csv que será gerado")
+        return
+
     imagem_original = cv2.imread(caminho_imagem)
     aplicarKmedia(valores_k, caminho_imagem, imagem_original)
 
@@ -53,12 +58,12 @@ def adicionarDadosCsv(nome_arquivo, dados):
 
 
 # Definir valores de k
-##valores_k = [1, 2, 3, 7, 10, 13, 15]
-valores_k = [1 ,3, 5]
+valores_k = [1, 2, 3, 7, 10, 13, 15]
 
-# Caminho da imagem
-caminho_imagem = 'imagens/animaisPNG/suricates-gordox.png'
-nomeArquivo = 'suricates-gordox.csv'  
+# Caminho da imagem 
+# *** Informe o caminho da imagem que deseja converter e o nome do arquivo csv que será gerado ***
+caminho_imagem = 'imagens/animaisPNG/tucano-toco.png'
+nomeArquivo = 'tucano-toco.csv'  
 
 # Executar o algoritmo
 __init__(valores_k, caminho_imagem)
